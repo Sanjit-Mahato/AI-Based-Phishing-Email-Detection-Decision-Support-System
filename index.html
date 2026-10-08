@@ -43,11 +43,11 @@
           behavioral urgency cues, and zero-day evasion vectors to deliver explainable, actionable security verdicts.
         </p>
         <div class="hero-cta-group">
-          <a href="#single-scanner-section" class="hero-cta-btn primary">
-            <span>⚡</span> Live Email Scanner
+          <a href="#batch-csv-section" class="hero-cta-btn primary">
+            <span>📁</span> Bulk CSV Fleet Audit (Drag & Drop)
           </a>
-          <a href="#batch-csv-section" class="hero-cta-btn secondary">
-            <span>📁</span> Bulk CSV Fleet Audit
+          <a href="#single-scanner-section" class="hero-cta-btn secondary">
+            <span>⚡</span> Single Email Scanner
           </a>
         </div>
       </div>
@@ -76,101 +76,7 @@
   <!-- Main Single-Page Dashboard -->
   <main class="dashboard-container">
 
-    <!-- Top Row: Scanner & Threat Assessment -->
-    <div class="scanner-grid" id="single-scanner-section">
-      <!-- Email Input Card -->
-      <section class="card">
-        <div class="card-title-bar">
-          <h2 class="card-heading">
-            <span>📥</span> Email Analysis Scanner
-          </h2>
-          <span class="badge-clean" id="scan-latency">READY</span>
-        </div>
-
-        <div class="presets-group">
-          <label class="presets-label">Load Test Scenario:</label>
-          <div class="presets-row" id="presets-row">
-            <!-- Loaded dynamically from API -->
-          </div>
-        </div>
-
-        <form id="scanner-form">
-          <label for="email-content" class="presets-label">Raw Email Headers & Message Body:</label>
-          <textarea 
-            id="email-content" 
-            class="email-textarea" 
-            placeholder="Paste raw email with headers (From:, Reply-To:, Subject:) and message body here..."
-          ></textarea>
-
-          <button type="submit" class="btn-analyze" id="btn-scan">
-            <span>⚡</span> Analyze Threat Now
-          </button>
-        </form>
-      </section>
-
-      <!-- Threat Assessment Card -->
-      <section class="card">
-        <div class="card-title-bar">
-          <h2 class="card-heading">
-            <span>🎯</span> Threat Assessment Verdict
-          </h2>
-          <span class="status-pill" id="verdict-pill">REAL-TIME EVALUATION</span>
-        </div>
-
-        <!-- Dynamic Verdict Banner -->
-        <div class="verdict-box suspicious" id="verdict-box">
-          <div class="verdict-tag" id="verdict-tag">ASSESSMENT RESULT</div>
-          <div class="verdict-status-title" id="verdict-title">ANALYZING...</div>
-          <p class="verdict-summary-text" id="verdict-summary">
-            Evaluating email indicators, domain authentication, and embedded links...
-          </p>
-        </div>
-
-        <!-- Metric Numbers -->
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <div class="metric-title">Risk Index Score</div>
-            <div class="metric-num" id="metric-risk" style="color: var(--blue-primary);">-- / 100</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-title">Analysis Confidence</div>
-            <div class="metric-num" id="metric-conf" style="color: var(--warning-amber);">--%</div>
-          </div>
-        </div>
-
-        <!-- Actionable Mitigation Advisory -->
-        <div>
-          <div class="presets-label" style="margin-bottom: 10px;">Security Recommendations:</div>
-          <div class="recommendations-list" id="recommendations-container">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- Extracted Threat Indicators & Evidence Grid -->
-    <section class="card" id="indicators-section">
-      <div class="card-title-bar">
-        <h2 class="card-heading">
-          <span>🔍</span> Extracted Threat Indicators & Evidence Signals
-        </h2>
-        <span class="badge-clean">7 CORE HEURISTICS</span>
-      </div>
-
-      <div class="indicators-grid" id="indicators-grid">
-        <!-- Dynamically populated with active/clean status -->
-      </div>
-
-      <!-- Formal Deduction Reasoning Box -->
-      <div class="reasoning-box" id="reasoning-box">
-        <span class="reasoning-badge">DECISION REASONING</span>
-        <div id="reasoning-text" style="color: var(--text-dark); font-weight: 600; line-height: 1.5;">
-          Awaiting input scan to generate formal threat reasoning.
-        </div>
-      </div>
-    </section>
-
-    <!-- Bulk Email Intelligence & CSV Audit Scanner -->
+    <!-- Top: Bulk Email Intelligence & CSV Audit Scanner (Drag & Drop) -->
     <section class="card" id="batch-csv-section">
       <div class="card-title-bar">
         <h2 class="card-heading">
@@ -299,6 +205,78 @@
         </div>
       </div>
     </section>
+
+    <!-- Single Email Threat Assessment Scanner -->
+    <div class="scanner-grid" id="single-scanner-section">
+      <!-- Email Input Card -->
+      <section class="card">
+        <div class="card-title-bar">
+          <h2 class="card-heading">
+            <span>📥</span> Email Analysis Scanner
+          </h2>
+          <span class="badge-clean" id="scan-latency">READY</span>
+        </div>
+
+        <div class="presets-group">
+          <label class="presets-label">Load Test Scenario:</label>
+          <div class="presets-row" id="presets-row">
+            <!-- Loaded dynamically from API -->
+          </div>
+        </div>
+
+        <form id="scanner-form">
+          <label for="email-content" class="presets-label">Raw Email Headers & Message Body:</label>
+          <textarea 
+            id="email-content" 
+            class="email-textarea" 
+            placeholder="Paste raw email with headers (From:, Reply-To:, Subject:) and message body here..."
+          ></textarea>
+
+          <button type="submit" class="btn-analyze" id="btn-scan">
+            <span>⚡</span> Analyze Threat Now
+          </button>
+        </form>
+      </section>
+
+      <!-- Threat Assessment Card -->
+      <section class="card">
+        <div class="card-title-bar">
+          <h2 class="card-heading">
+            <span>🎯</span> Threat Assessment Verdict
+          </h2>
+          <span class="status-pill" id="verdict-pill">REAL-TIME EVALUATION</span>
+        </div>
+
+        <!-- Dynamic Verdict Banner -->
+        <div class="verdict-box suspicious" id="verdict-box">
+          <div class="verdict-tag" id="verdict-tag">ASSESSMENT RESULT</div>
+          <div class="verdict-status-title" id="verdict-title">ANALYZING...</div>
+          <p class="verdict-summary-text" id="verdict-summary">
+            Evaluating email indicators, domain authentication, and embedded links...
+          </p>
+        </div>
+
+        <!-- Metric Numbers -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-title">Risk Index Score</div>
+            <div class="metric-num" id="metric-risk" style="color: var(--blue-primary);">-- / 100</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Analysis Confidence</div>
+            <div class="metric-num" id="metric-conf" style="color: var(--warning-amber);">--%</div>
+          </div>
+        </div>
+
+        <!-- Actionable Mitigation Advisory -->
+        <div>
+          <div class="presets-label" style="margin-bottom: 10px;">Security Recommendations:</div>
+          <div class="recommendations-list" id="recommendations-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+    </div>
 
   </main>
 
