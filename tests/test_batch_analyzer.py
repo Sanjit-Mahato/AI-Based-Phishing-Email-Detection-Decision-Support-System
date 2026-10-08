@@ -43,8 +43,12 @@ class TestBatchCSVAnalyzer(unittest.TestCase):
         summary = result["summary"]
         self.assertEqual(summary["total_emails"], 15)
         self.assertIn("indicator_prevalence", summary)
-        self.assertIn("csv_export", result)
         self.assertGreater(len(result["results"]), 0)
+        item0 = result["results"][0]
+        self.assertIn("full_email", item0)
+        self.assertIn("body", item0)
+        self.assertIn("urls", item0)
+        self.assertIn("attachments", item0)
 
     def test_generate_csv_report(self):
         result = self.analyzer.analyze_csv_text(self.sample_csv_text)

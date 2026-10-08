@@ -120,6 +120,10 @@ class BatchCSVAnalyzer:
             subject_display = parsed.get("subject") or subject_val or "(No Subject)"
             body_snippet = (parsed.get("body") or raw_email)[:120].replace('\n', ' ')
 
+            full_body = parsed.get("body") or raw_email
+            urls = parsed.get("urls") or []
+            attachments = parsed.get("attachments") or []
+            reply_to = parsed.get("reply_to") or ""
             top_rec = result["recommendations"][0]["action"] if result.get("recommendations") else "N/A"
 
             analyzed_items.append({
@@ -127,6 +131,13 @@ class BatchCSVAnalyzer:
                 "sender": sender_display,
                 "subject": subject_display,
                 "snippet": body_snippet,
+                "full_email": full_email_text,
+                "body": full_body,
+                "reply_to": reply_to,
+                "urls": urls,
+                "attachments": attachments,
+                "evidence": result.get("evidence", {}),
+                "recommendations": result.get("recommendations", []),
                 "verdict": verdict,
                 "risk_score": risk,
                 "confidence": result["confidence_percentage"],
