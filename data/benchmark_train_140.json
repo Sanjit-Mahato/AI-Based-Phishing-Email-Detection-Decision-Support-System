@@ -1,0 +1,842 @@
+[
+  {
+    "id": "train_phish_001",
+    "raw": "From: Security Officer <service0@bank-alerts.com>\nReply-To: <service0@bank-alerts.com>\nSubject: Service Notification\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.1/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_002",
+    "raw": "From: Security Officer <service1@bank-alerts.com>\nReply-To: <collector1@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_003",
+    "raw": "From: Security Officer <service2@bank-alerts.com>\nReply-To: <collector2@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_004",
+    "raw": "From: Security Officer <service3@bank-alerts.com>\nReply-To: <service3@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_005",
+    "raw": "From: Security Officer <service4@bank-alerts.com>\nReply-To: <collector4@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.5/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_006",
+    "raw": "From: Security Officer <service5@bank-alerts.com>\nReply-To: <collector5@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_007",
+    "raw": "From: Security Officer <service6@bank-alerts.com>\nReply-To: <service6@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_008",
+    "raw": "From: Security Officer <service7@bank-alerts.com>\nReply-To: <collector7@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_009",
+    "raw": "From: Security Officer <service8@bank-alerts.com>\nReply-To: <collector8@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.9/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_010",
+    "raw": "From: Security Officer <service9@bank-alerts.com>\nReply-To: <service9@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_011",
+    "raw": "From: Security Officer <service10@bank-alerts.com>\nReply-To: <collector10@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_012",
+    "raw": "From: Security Officer <service11@bank-alerts.com>\nReply-To: <collector11@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_013",
+    "raw": "From: Security Officer <service12@bank-alerts.com>\nReply-To: <service12@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.13/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_014",
+    "raw": "From: Security Officer <service13@bank-alerts.com>\nReply-To: <collector13@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_015",
+    "raw": "From: Security Officer <service14@bank-alerts.com>\nReply-To: <collector14@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_016",
+    "raw": "From: Security Officer <service15@bank-alerts.com>\nReply-To: <service15@bank-alerts.com>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_017",
+    "raw": "From: Security Officer <service16@bank-alerts.com>\nReply-To: <collector16@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.17/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_018",
+    "raw": "From: Security Officer <service17@bank-alerts.com>\nReply-To: <collector17@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_019",
+    "raw": "From: Security Officer <service18@bank-alerts.com>\nReply-To: <service18@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_020",
+    "raw": "From: Security Officer <service19@bank-alerts.com>\nReply-To: <collector19@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_021",
+    "raw": "From: Security Officer <service20@bank-alerts.com>\nReply-To: <collector20@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.21/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_022",
+    "raw": "From: Security Officer <service21@bank-alerts.com>\nReply-To: <service21@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_023",
+    "raw": "From: Security Officer <service22@bank-alerts.com>\nReply-To: <collector22@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_024",
+    "raw": "From: Security Officer <service23@bank-alerts.com>\nReply-To: <collector23@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_025",
+    "raw": "From: Security Officer <service24@bank-alerts.com>\nReply-To: <service24@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.25/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_026",
+    "raw": "From: Security Officer <service25@bank-alerts.com>\nReply-To: <collector25@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_027",
+    "raw": "From: Security Officer <service26@bank-alerts.com>\nReply-To: <collector26@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_028",
+    "raw": "From: Security Officer <service27@bank-alerts.com>\nReply-To: <service27@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_029",
+    "raw": "From: Security Officer <service28@bank-alerts.com>\nReply-To: <collector28@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.29/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_030",
+    "raw": "From: Security Officer <service29@bank-alerts.com>\nReply-To: <collector29@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_031",
+    "raw": "From: Security Officer <service30@bank-alerts.com>\nReply-To: <service30@bank-alerts.com>\nSubject: Service Notification\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_032",
+    "raw": "From: Security Officer <service31@bank-alerts.com>\nReply-To: <collector31@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_033",
+    "raw": "From: Security Officer <service32@bank-alerts.com>\nReply-To: <collector32@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.33/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_034",
+    "raw": "From: Security Officer <service33@bank-alerts.com>\nReply-To: <service33@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_035",
+    "raw": "From: Security Officer <service34@bank-alerts.com>\nReply-To: <collector34@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_036",
+    "raw": "From: Security Officer <service35@bank-alerts.com>\nReply-To: <collector35@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_037",
+    "raw": "From: Security Officer <service36@bank-alerts.com>\nReply-To: <service36@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.37/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_038",
+    "raw": "From: Security Officer <service37@bank-alerts.com>\nReply-To: <collector37@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_039",
+    "raw": "From: Security Officer <service38@bank-alerts.com>\nReply-To: <collector38@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_040",
+    "raw": "From: Security Officer <service39@bank-alerts.com>\nReply-To: <service39@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_041",
+    "raw": "From: Security Officer <service40@bank-alerts.com>\nReply-To: <collector40@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.41/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_042",
+    "raw": "From: Security Officer <service41@bank-alerts.com>\nReply-To: <collector41@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_043",
+    "raw": "From: Security Officer <service42@bank-alerts.com>\nReply-To: <service42@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_044",
+    "raw": "From: Security Officer <service43@bank-alerts.com>\nReply-To: <collector43@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_045",
+    "raw": "From: Security Officer <service44@bank-alerts.com>\nReply-To: <collector44@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.45/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_046",
+    "raw": "From: Security Officer <service45@bank-alerts.com>\nReply-To: <service45@bank-alerts.com>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_047",
+    "raw": "From: Security Officer <service46@bank-alerts.com>\nReply-To: <collector46@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_048",
+    "raw": "From: Security Officer <service47@bank-alerts.com>\nReply-To: <collector47@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_049",
+    "raw": "From: Security Officer <service48@bank-alerts.com>\nReply-To: <service48@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.49/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_050",
+    "raw": "From: Security Officer <service49@bank-alerts.com>\nReply-To: <collector49@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_051",
+    "raw": "From: Security Officer <service50@bank-alerts.com>\nReply-To: <collector50@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_052",
+    "raw": "From: Security Officer <service51@bank-alerts.com>\nReply-To: <service51@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_053",
+    "raw": "From: Security Officer <service52@bank-alerts.com>\nReply-To: <collector52@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.53/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_054",
+    "raw": "From: Security Officer <service53@bank-alerts.com>\nReply-To: <collector53@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_055",
+    "raw": "From: Security Officer <service54@bank-alerts.com>\nReply-To: <service54@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_056",
+    "raw": "From: Security Officer <service55@bank-alerts.com>\nReply-To: <collector55@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_057",
+    "raw": "From: Security Officer <service56@bank-alerts.com>\nReply-To: <collector56@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.57/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_058",
+    "raw": "From: Security Officer <service57@bank-alerts.com>\nReply-To: <service57@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_059",
+    "raw": "From: Security Officer <service58@bank-alerts.com>\nReply-To: <collector58@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_060",
+    "raw": "From: Security Officer <service59@bank-alerts.com>\nReply-To: <collector59@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_061",
+    "raw": "From: Security Officer <service60@bank-alerts.com>\nReply-To: <service60@bank-alerts.com>\nSubject: Service Notification\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.61/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_062",
+    "raw": "From: Security Officer <service61@bank-alerts.com>\nReply-To: <collector61@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_063",
+    "raw": "From: Security Officer <service62@bank-alerts.com>\nReply-To: <collector62@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_064",
+    "raw": "From: Security Officer <service63@bank-alerts.com>\nReply-To: <service63@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_065",
+    "raw": "From: Security Officer <service64@bank-alerts.com>\nReply-To: <collector64@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.65/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_066",
+    "raw": "From: Security Officer <service65@bank-alerts.com>\nReply-To: <collector65@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_067",
+    "raw": "From: Security Officer <service66@bank-alerts.com>\nReply-To: <service66@bank-alerts.com>\nSubject: Urgent Account Notice\nAttachment: invoice_scan.exe\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_068",
+    "raw": "From: Security Officer <service67@bank-alerts.com>\nReply-To: <collector67@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_069",
+    "raw": "From: Security Officer <service68@bank-alerts.com>\nReply-To: <collector68@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://10.0.0.69/login\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_070",
+    "raw": "From: Security Officer <service69@bank-alerts.com>\nReply-To: <service69@bank-alerts.com>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_071",
+    "raw": "From: Security Officer <service70@bank-alerts.com>\nReply-To: <collector70@freemail.xyz>\nSubject: Service Notification\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://verify-login.xyz/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_phish_072",
+    "raw": "From: Security Officer <service71@bank-alerts.com>\nReply-To: <collector71@freemail.xyz>\nSubject: Urgent Account Notice\n\nDear user, your account requires immediate attention. Verify within 24 hours:\nhttp://secure-service.net/auth\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "train_safe_001",
+    "raw": "From: Colleague <colleague0@company.org>\nReply-To: <colleague0@company.org>\nSubject: Project sync meeting notes #0\n\nHere are the meeting notes and project milestones for this sprint.\nPlease review urgently if possible.\nLink: http://intranet.company.org/docs/0\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_002",
+    "raw": "From: Colleague <colleague1@company.org>\nReply-To: <colleague1@company.org>\nSubject: Project sync meeting notes #1\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/1\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_003",
+    "raw": "From: Colleague <colleague2@company.org>\nReply-To: <colleague2@company.org>\nSubject: Project sync meeting notes #2\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/2\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_004",
+    "raw": "From: Colleague <colleague3@company.org>\nReply-To: <colleague3@company.org>\nSubject: Project sync meeting notes #3\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/3\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_005",
+    "raw": "From: Colleague <colleague4@company.org>\nReply-To: <colleague4@company.org>\nSubject: Project sync meeting notes #4\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/4\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_006",
+    "raw": "From: Colleague <colleague5@company.org>\nReply-To: <colleague5@company.org>\nSubject: Project sync meeting notes #5\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/5\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_007",
+    "raw": "From: Colleague <colleague6@company.org>\nReply-To: <colleague6@company.org>\nSubject: Project sync meeting notes #6\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/6\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_008",
+    "raw": "From: Colleague <colleague7@company.org>\nReply-To: <colleague7@company.org>\nSubject: Project sync meeting notes #7\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/7\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_009",
+    "raw": "From: Colleague <colleague8@company.org>\nReply-To: <colleague8@company.org>\nSubject: Project sync meeting notes #8\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/8\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_010",
+    "raw": "From: Colleague <colleague9@company.org>\nReply-To: <colleague9@company.org>\nSubject: Project sync meeting notes #9\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/9\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_011",
+    "raw": "From: Colleague <colleague10@company.org>\nReply-To: <colleague10@company.org>\nSubject: Project sync meeting notes #10\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/10\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_012",
+    "raw": "From: Colleague <colleague11@company.org>\nReply-To: <colleague11@company.org>\nSubject: Project sync meeting notes #11\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/11\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_013",
+    "raw": "From: Colleague <colleague12@company.org>\nReply-To: <colleague12@company.org>\nSubject: Project sync meeting notes #12\n\nHere are the meeting notes and project milestones for this sprint.\nPlease review urgently if possible.\nLink: https://company.org/meeting/12\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_014",
+    "raw": "From: Colleague <colleague13@company.org>\nReply-To: <colleague13@company.org>\nSubject: Project sync meeting notes #13\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/13\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_015",
+    "raw": "From: Colleague <colleague14@company.org>\nReply-To: <colleague14@company.org>\nSubject: Project sync meeting notes #14\n\nHere are the meeting notes and project milestones for this sprint.\nLink: http://intranet.company.org/docs/14\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_016",
+    "raw": "From: Colleague <colleague15@company.org>\nReply-To: <colleague15@company.org>\nSubject: Project sync meeting notes #15\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/15\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_017",
+    "raw": "From: Colleague <colleague16@company.org>\nReply-To: <colleague16@company.org>\nSubject: Project sync meeting notes #16\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/16\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_018",
+    "raw": "From: Colleague <colleague17@company.org>\nReply-To: <colleague17@company.org>\nSubject: Project sync meeting notes #17\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/17\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_019",
+    "raw": "From: Colleague <colleague18@company.org>\nReply-To: <colleague18@company.org>\nSubject: Project sync meeting notes #18\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/18\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_020",
+    "raw": "From: Colleague <colleague19@company.org>\nReply-To: <colleague19@company.org>\nSubject: Project sync meeting notes #19\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/19\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_021",
+    "raw": "From: Colleague <colleague20@company.org>\nReply-To: <colleague20@company.org>\nSubject: Project sync meeting notes #20\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/20\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_022",
+    "raw": "From: Colleague <colleague21@company.org>\nReply-To: <colleague21@company.org>\nSubject: Project sync meeting notes #21\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/21\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_023",
+    "raw": "From: Colleague <colleague22@company.org>\nReply-To: <colleague22@company.org>\nSubject: Project sync meeting notes #22\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/22\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_024",
+    "raw": "From: Colleague <colleague23@company.org>\nReply-To: <colleague23@company.org>\nSubject: Project sync meeting notes #23\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/23\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_025",
+    "raw": "From: Colleague <colleague24@company.org>\nReply-To: <colleague24@company.org>\nSubject: Project sync meeting notes #24\n\nHere are the meeting notes and project milestones for this sprint.\nPlease review urgently if possible.\nLink: https://company.org/meeting/24\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_026",
+    "raw": "From: Colleague <colleague25@company.org>\nReply-To: <colleague25@company.org>\nSubject: Project sync meeting notes #25\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/25\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_027",
+    "raw": "From: Colleague <colleague26@company.org>\nReply-To: <colleague26@company.org>\nSubject: Project sync meeting notes #26\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/26\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_028",
+    "raw": "From: Colleague <colleague27@company.org>\nReply-To: <colleague27@company.org>\nSubject: Project sync meeting notes #27\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/27\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_029",
+    "raw": "From: Colleague <colleague28@company.org>\nReply-To: <colleague28@company.org>\nSubject: Project sync meeting notes #28\n\nHere are the meeting notes and project milestones for this sprint.\nLink: http://intranet.company.org/docs/28\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_030",
+    "raw": "From: Colleague <colleague29@company.org>\nReply-To: <colleague29@company.org>\nSubject: Project sync meeting notes #29\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/29\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_031",
+    "raw": "From: Colleague <colleague30@company.org>\nReply-To: <colleague30@company.org>\nSubject: Project sync meeting notes #30\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/30\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_032",
+    "raw": "From: Colleague <colleague31@company.org>\nReply-To: <colleague31@company.org>\nSubject: Project sync meeting notes #31\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/31\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_033",
+    "raw": "From: Colleague <colleague32@company.org>\nReply-To: <colleague32@company.org>\nSubject: Project sync meeting notes #32\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/32\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_034",
+    "raw": "From: Colleague <colleague33@company.org>\nReply-To: <colleague33@company.org>\nSubject: Project sync meeting notes #33\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/33\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_035",
+    "raw": "From: Colleague <colleague34@company.org>\nReply-To: <colleague34@company.org>\nSubject: Project sync meeting notes #34\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/34\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_036",
+    "raw": "From: Colleague <colleague35@company.org>\nReply-To: <colleague35@company.org>\nSubject: Project sync meeting notes #35\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/35\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_037",
+    "raw": "From: Colleague <colleague36@company.org>\nReply-To: <colleague36@company.org>\nSubject: Project sync meeting notes #36\n\nHere are the meeting notes and project milestones for this sprint.\nPlease review urgently if possible.\nLink: https://company.org/meeting/36\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_038",
+    "raw": "From: Colleague <colleague37@company.org>\nReply-To: <colleague37@company.org>\nSubject: Project sync meeting notes #37\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/37\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_039",
+    "raw": "From: Colleague <colleague38@company.org>\nReply-To: <colleague38@company.org>\nSubject: Project sync meeting notes #38\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/38\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_040",
+    "raw": "From: Colleague <colleague39@company.org>\nReply-To: <colleague39@company.org>\nSubject: Project sync meeting notes #39\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/39\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_041",
+    "raw": "From: Colleague <colleague40@company.org>\nReply-To: <colleague40@company.org>\nSubject: Project sync meeting notes #40\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/40\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_042",
+    "raw": "From: Colleague <colleague41@company.org>\nReply-To: <colleague41@company.org>\nSubject: Project sync meeting notes #41\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/41\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_043",
+    "raw": "From: Colleague <colleague42@company.org>\nReply-To: <colleague42@company.org>\nSubject: Project sync meeting notes #42\n\nHere are the meeting notes and project milestones for this sprint.\nLink: http://intranet.company.org/docs/42\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_044",
+    "raw": "From: Colleague <colleague43@company.org>\nReply-To: <colleague43@company.org>\nSubject: Project sync meeting notes #43\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/43\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_045",
+    "raw": "From: Colleague <colleague44@company.org>\nReply-To: <colleague44@company.org>\nSubject: Project sync meeting notes #44\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/44\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_046",
+    "raw": "From: Colleague <colleague45@company.org>\nReply-To: <colleague45@company.org>\nSubject: Project sync meeting notes #45\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/45\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_047",
+    "raw": "From: Colleague <colleague46@company.org>\nReply-To: <colleague46@company.org>\nSubject: Project sync meeting notes #46\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/46\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_048",
+    "raw": "From: Colleague <colleague47@company.org>\nReply-To: <colleague47@company.org>\nSubject: Project sync meeting notes #47\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/47\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_049",
+    "raw": "From: Colleague <colleague48@company.org>\nReply-To: <colleague48@company.org>\nSubject: Project sync meeting notes #48\n\nHere are the meeting notes and project milestones for this sprint.\nPlease review urgently if possible.\nLink: https://company.org/meeting/48\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_050",
+    "raw": "From: Colleague <colleague49@company.org>\nReply-To: <colleague49@company.org>\nSubject: Project sync meeting notes #49\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/49\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_051",
+    "raw": "From: Colleague <colleague50@company.org>\nReply-To: <colleague50@company.org>\nSubject: Project sync meeting notes #50\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/50\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_052",
+    "raw": "From: Colleague <colleague51@company.org>\nReply-To: <colleague51@company.org>\nSubject: Project sync meeting notes #51\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/51\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_053",
+    "raw": "From: Colleague <colleague52@company.org>\nReply-To: <colleague52@company.org>\nSubject: Project sync meeting notes #52\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/52\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_054",
+    "raw": "From: Colleague <colleague53@company.org>\nReply-To: <colleague53@company.org>\nSubject: Project sync meeting notes #53\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/53\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_055",
+    "raw": "From: Colleague <colleague54@company.org>\nReply-To: <colleague54@company.org>\nSubject: Project sync meeting notes #54\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/54\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_056",
+    "raw": "From: Colleague <colleague55@company.org>\nReply-To: <colleague55@company.org>\nSubject: Project sync meeting notes #55\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/55\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_057",
+    "raw": "From: Colleague <colleague56@company.org>\nReply-To: <colleague56@company.org>\nSubject: Project sync meeting notes #56\n\nHere are the meeting notes and project milestones for this sprint.\nLink: http://intranet.company.org/docs/56\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_058",
+    "raw": "From: Colleague <colleague57@company.org>\nReply-To: <colleague57@company.org>\nSubject: Project sync meeting notes #57\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/57\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_059",
+    "raw": "From: Colleague <colleague58@company.org>\nReply-To: <colleague58@company.org>\nSubject: Project sync meeting notes #58\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/58\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_060",
+    "raw": "From: Colleague <colleague59@company.org>\nReply-To: <colleague59@company.org>\nSubject: Project sync meeting notes #59\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/59\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_061",
+    "raw": "From: Colleague <colleague60@company.org>\nReply-To: <colleague60@company.org>\nSubject: Project sync meeting notes #60\n\nHere are the meeting notes and project milestones for this sprint.\nPlease review urgently if possible.\nLink: https://company.org/meeting/60\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_062",
+    "raw": "From: Colleague <colleague61@company.org>\nReply-To: <colleague61@company.org>\nSubject: Project sync meeting notes #61\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/61\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_063",
+    "raw": "From: Colleague <colleague62@company.org>\nReply-To: <colleague62@company.org>\nSubject: Project sync meeting notes #62\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/62\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_064",
+    "raw": "From: Colleague <colleague63@company.org>\nReply-To: <colleague63@company.org>\nSubject: Project sync meeting notes #63\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/63\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_065",
+    "raw": "From: Colleague <colleague64@company.org>\nReply-To: <colleague64@company.org>\nSubject: Project sync meeting notes #64\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/64\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_066",
+    "raw": "From: Colleague <colleague65@company.org>\nReply-To: <colleague65@company.org>\nSubject: Project sync meeting notes #65\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/65\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_067",
+    "raw": "From: Colleague <colleague66@company.org>\nReply-To: <colleague66@company.org>\nSubject: Project sync meeting notes #66\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/66\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "train_safe_068",
+    "raw": "From: Colleague <colleague67@company.org>\nReply-To: <colleague67@company.org>\nSubject: Project sync meeting notes #67\n\nHere are the meeting notes and project milestones for this sprint.\nLink: https://company.org/meeting/67\n",
+    "label": 0,
+    "type": "Legitimate"
+  }
+]

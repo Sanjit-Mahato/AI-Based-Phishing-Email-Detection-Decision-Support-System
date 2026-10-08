@@ -1,0 +1,17 @@
+AI-BASED PHISHING EMAIL DETECTION & DECISION SUPPORT SYSTEM
+BENCHMARK EXECUTION LOG & VERIFICATION OUTPUT
+
+Detector                   | Accuracy | Precision | Recall | False + | False -
+--------------------------------------------------------------------------------
+Heuristic baseline         | 0.883    | 0.800     | 1.000  | 7       | 0      
+Rule base (flagged)        | 0.867    | 0.833     | 0.893  | 5       | 3      
+Rule base (Phishing only)  | 0.883    | 0.862     | 0.893  | 4       | 3      
+Naive Bayes (>= 0.5)       | 0.883    | 0.800     | 1.000  | 7       | 0      
+Combined (flagged)         | 0.883    | 0.800     | 1.000  | 7       | 0      
+--------------------------------------------------------------------------------
+
+Naive Bayes 5-fold cross-validation accuracy: 0.925, 0.950, 0.950, 1.000, 0.975 (mean 0.960)
+
+Backward Chaining Proof: phishing by spoofed sender (spoofed_sender by reply to mismatch) and bad link (bad_link by ip in url)
+
+Adversarial Minimax: Nodes=7, Pruned=4, Optimal=HTTPS Certificate Masquerade

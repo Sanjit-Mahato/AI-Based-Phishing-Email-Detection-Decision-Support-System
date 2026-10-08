@@ -47,6 +47,8 @@ env/
 *.swo
 
 # Large datasets and models
+*.csv
+*.zip
 *.pkl
 *.joblib
 *.h5

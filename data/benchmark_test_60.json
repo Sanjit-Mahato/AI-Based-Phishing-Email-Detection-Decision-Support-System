@@ -1,0 +1,362 @@
+[
+  {
+    "id": "test_phish_01",
+    "raw": "From: Security Support <alerts0@paypa1-update.xyz>\nReply-To: catch0@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.10/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_02",
+    "raw": "From: Security Support <alerts1@paypa1-update.xyz>\nReply-To: catch1@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.11/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_03",
+    "raw": "From: Security Support <alerts2@paypa1-update.xyz>\nReply-To: catch2@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.12/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_04",
+    "raw": "From: Security Support <alerts3@paypa1-update.xyz>\nReply-To: catch3@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.13/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_05",
+    "raw": "From: Security Support <alerts4@paypa1-update.xyz>\nReply-To: catch4@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.14/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_06",
+    "raw": "From: Security Support <alerts5@paypa1-update.xyz>\nReply-To: catch5@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.15/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_07",
+    "raw": "From: Security Support <alerts6@paypa1-update.xyz>\nReply-To: catch6@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.16/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_08",
+    "raw": "From: Security Support <alerts7@paypa1-update.xyz>\nReply-To: catch7@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.17/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_09",
+    "raw": "From: Security Support <alerts8@paypa1-update.xyz>\nReply-To: catch8@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.18/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_10",
+    "raw": "From: Security Support <alerts9@paypa1-update.xyz>\nReply-To: catch9@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.19/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_11",
+    "raw": "From: Security Support <alerts10@paypa1-update.xyz>\nReply-To: catch10@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.20/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_12",
+    "raw": "From: Security Support <alerts11@paypa1-update.xyz>\nReply-To: catch11@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.21/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_13",
+    "raw": "From: Security Support <alerts12@paypa1-update.xyz>\nReply-To: catch12@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.22/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_14",
+    "raw": "From: Security Support <alerts13@paypa1-update.xyz>\nReply-To: catch13@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.23/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_15",
+    "raw": "From: Security Support <alerts14@paypa1-update.xyz>\nReply-To: catch14@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.24/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_16",
+    "raw": "From: Security Support <alerts15@paypa1-update.xyz>\nReply-To: catch15@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.25/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_17",
+    "raw": "From: Security Support <alerts16@paypa1-update.xyz>\nReply-To: catch16@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.26/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_18",
+    "raw": "From: Security Support <alerts17@paypa1-update.xyz>\nReply-To: catch17@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.27/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_19",
+    "raw": "From: Security Support <alerts18@paypa1-update.xyz>\nReply-To: catch18@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.28/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_20",
+    "raw": "From: Security Support <alerts19@paypa1-update.xyz>\nReply-To: catch19@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.29/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_21",
+    "raw": "From: Security Support <alerts20@paypa1-update.xyz>\nReply-To: catch20@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.30/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_22",
+    "raw": "From: Security Support <alerts21@paypa1-update.xyz>\nReply-To: catch21@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.31/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_23",
+    "raw": "From: Security Support <alerts22@paypa1-update.xyz>\nReply-To: catch22@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.32/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_24",
+    "raw": "From: Security Support <alerts23@paypa1-update.xyz>\nReply-To: catch23@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.33/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_25",
+    "raw": "From: Security Support <alerts24@paypa1-update.xyz>\nReply-To: catch24@malicious-collector.xyz\nSubject: Urgent: Your account has been suspended!\nAttachment: verification_utility.exe\n\nDear Customer,\n\nUnauthorized access was detected. Immediate verification required within 24 hours.\nRestore access immediately: http://192.168.1.34/verify-account/auth?token=secure998273615418293746192837461\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_26",
+    "raw": "From: HR Department <hr0@corp-portal.com>\nReply-To: hr0@corp-portal.com\nSubject: Urgent: Mandatory Policy Review Notice\n\nPlease review the updated organizational policy immediately before the end of the day.\nDocumentation link: http://intranet-review.internal.corp/overview\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_27",
+    "raw": "From: HR Department <hr1@corp-portal.com>\nReply-To: hr1@corp-portal.com\nSubject: Urgent: Mandatory Policy Review Notice\n\nPlease review the updated organizational policy immediately before the end of the day.\nDocumentation link: http://intranet-review.internal.corp/overview\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_phish_28",
+    "raw": "From: HR Department <hr2@corp-portal.com>\nReply-To: hr2@corp-portal.com\nSubject: Urgent: Mandatory Policy Review Notice\n\nPlease review the updated organizational policy immediately before the end of the day.\nDocumentation link: http://intranet-review.internal.corp/overview\n",
+    "label": 1,
+    "type": "Phishing"
+  },
+  {
+    "id": "test_safe_01",
+    "raw": "From: Sarah Jenkins <sjenkins0@university.edu>\nReply-To: sjenkins0@university.edu\nSubject: Notes from today's project review meeting #1\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_02",
+    "raw": "From: Sarah Jenkins <sjenkins1@university.edu>\nReply-To: sjenkins1@university.edu\nSubject: Notes from today's project review meeting #2\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_03",
+    "raw": "From: Sarah Jenkins <sjenkins2@university.edu>\nReply-To: sjenkins2@university.edu\nSubject: Notes from today's project review meeting #3\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_04",
+    "raw": "From: Sarah Jenkins <sjenkins3@university.edu>\nReply-To: sjenkins3@university.edu\nSubject: Notes from today's project review meeting #4\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_05",
+    "raw": "From: Sarah Jenkins <sjenkins4@university.edu>\nReply-To: sjenkins4@university.edu\nSubject: Notes from today's project review meeting #5\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_06",
+    "raw": "From: Sarah Jenkins <sjenkins5@university.edu>\nReply-To: sjenkins5@university.edu\nSubject: Notes from today's project review meeting #6\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_07",
+    "raw": "From: Sarah Jenkins <sjenkins6@university.edu>\nReply-To: sjenkins6@university.edu\nSubject: Notes from today's project review meeting #7\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_08",
+    "raw": "From: Sarah Jenkins <sjenkins7@university.edu>\nReply-To: sjenkins7@university.edu\nSubject: Notes from today's project review meeting #8\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_09",
+    "raw": "From: Sarah Jenkins <sjenkins8@university.edu>\nReply-To: sjenkins8@university.edu\nSubject: Notes from today's project review meeting #9\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_10",
+    "raw": "From: Sarah Jenkins <sjenkins9@university.edu>\nReply-To: sjenkins9@university.edu\nSubject: Notes from today's project review meeting #10\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_11",
+    "raw": "From: Sarah Jenkins <sjenkins10@university.edu>\nReply-To: sjenkins10@university.edu\nSubject: Notes from today's project review meeting #11\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_12",
+    "raw": "From: Sarah Jenkins <sjenkins11@university.edu>\nReply-To: sjenkins11@university.edu\nSubject: Notes from today's project review meeting #12\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_13",
+    "raw": "From: Sarah Jenkins <sjenkins12@university.edu>\nReply-To: sjenkins12@university.edu\nSubject: Notes from today's project review meeting #13\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_14",
+    "raw": "From: Sarah Jenkins <sjenkins13@university.edu>\nReply-To: sjenkins13@university.edu\nSubject: Notes from today's project review meeting #14\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_15",
+    "raw": "From: Sarah Jenkins <sjenkins14@university.edu>\nReply-To: sjenkins14@university.edu\nSubject: Notes from today's project review meeting #15\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_16",
+    "raw": "From: Sarah Jenkins <sjenkins15@university.edu>\nReply-To: sjenkins15@university.edu\nSubject: Notes from today's project review meeting #16\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_17",
+    "raw": "From: Sarah Jenkins <sjenkins16@university.edu>\nReply-To: sjenkins16@university.edu\nSubject: Notes from today's project review meeting #17\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_18",
+    "raw": "From: Sarah Jenkins <sjenkins17@university.edu>\nReply-To: sjenkins17@university.edu\nSubject: Notes from today's project review meeting #18\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_19",
+    "raw": "From: Sarah Jenkins <sjenkins18@university.edu>\nReply-To: sjenkins18@university.edu\nSubject: Notes from today's project review meeting #19\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_20",
+    "raw": "From: Sarah Jenkins <sjenkins19@university.edu>\nReply-To: sjenkins19@university.edu\nSubject: Notes from today's project review meeting #20\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_21",
+    "raw": "From: Sarah Jenkins <sjenkins20@university.edu>\nReply-To: sjenkins20@university.edu\nSubject: Notes from today's project review meeting #21\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_22",
+    "raw": "From: Sarah Jenkins <sjenkins21@university.edu>\nReply-To: sjenkins21@university.edu\nSubject: Notes from today's project review meeting #22\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_23",
+    "raw": "From: Sarah Jenkins <sjenkins22@university.edu>\nReply-To: sjenkins22@university.edu\nSubject: Notes from today's project review meeting #23\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_24",
+    "raw": "From: Sarah Jenkins <sjenkins23@university.edu>\nReply-To: sjenkins23@university.edu\nSubject: Notes from today's project review meeting #24\n\nHi team,\n\nThanks for the productive discussion this morning. Attached are the slides and summary notes.\nLet's sync up again on Thursday.\n\nPortal: https://classes.university.edu/course/ai301\nBest regards,\nSarah\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_25",
+    "raw": "From: Bank Billing <billing0@mybank.com>\nReply-To: outsourced-support0@payment-gateway.xyz\nSubject: Urgent: Your monthly e-statement is ready\n\nPlease verify your statement details immediately.\nE-statement link: http://statement-portal.club/download\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_26",
+    "raw": "From: Bank Billing <billing1@mybank.com>\nReply-To: outsourced-support1@payment-gateway.xyz\nSubject: Urgent: Your monthly e-statement is ready\n\nPlease verify your statement details immediately.\nE-statement link: http://statement-portal.club/download\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_27",
+    "raw": "From: Bank Billing <billing2@mybank.com>\nReply-To: outsourced-support2@payment-gateway.xyz\nSubject: Urgent: Your monthly e-statement is ready\n\nPlease verify your statement details immediately.\nE-statement link: http://statement-portal.club/download\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_28",
+    "raw": "From: Bank Billing <billing3@mybank.com>\nReply-To: outsourced-support3@payment-gateway.xyz\nSubject: Urgent: Your monthly e-statement is ready\n\nPlease verify your statement details immediately.\nE-statement link: http://statement-portal.club/download\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_29",
+    "raw": "From: IT Helpdesk <helpdesk0@university.edu>\nReply-To: helpdesk0@university.edu\nSubject: Urgent: Maintenance notice for campus wireless\n\nImmediate reconnect will be available within 24 hours. Update your client.\nHelpdesk: http://it.university.edu/help\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_30",
+    "raw": "From: IT Helpdesk <helpdesk1@university.edu>\nReply-To: helpdesk1@university.edu\nSubject: Urgent: Maintenance notice for campus wireless\n\nImmediate reconnect will be available within 24 hours. Update your client.\nHelpdesk: http://it.university.edu/help\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_31",
+    "raw": "From: IT Helpdesk <helpdesk2@university.edu>\nReply-To: helpdesk2@university.edu\nSubject: Urgent: Maintenance notice for campus wireless\n\nImmediate reconnect will be available within 24 hours. Update your client.\nHelpdesk: http://it.university.edu/help\n",
+    "label": 0,
+    "type": "Legitimate"
+  },
+  {
+    "id": "test_safe_32",
+    "raw": "From: Webinar Host <host@webinar-community.org>\nReply-To: host@webinar-community.org\nSubject: Webinar recording and slides now online\n\nThank you for attending our session yesterday.\nRecording link: https://streaming-archive.club/watch\n",
+    "label": 0,
+    "type": "Legitimate"
+  }
+]
