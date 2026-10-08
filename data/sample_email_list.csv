@@ -1,0 +1,16 @@
+Email Text,Sender,Subject,Email Type
+"Dear Customer, we detected unauthorized attempts on your account. You must immediately verify your credentials within 24 hours at http://192.168.1.50/auth/restore or your account will be suspended permanently. Attached: notice.scr",security@paypa1-support.xyz,Urgent: Your account is suspended,Phishing Email
+"Hi team, attached are the minutes from yesterday's product roadmap sync. Please take a look at the action items before Thursday. Portal: https://internal.company.com/notes",alex@company.com,Sprint Planning Notes,Safe Email
+"FINAL NOTICE: Your invoice payment of $4,850.00 failed. Immediate payment required. Access secure payment gateway: http://billing-portal.club/pay-now?id=8372",billing@cloud-services.club,Action Required: Overdue Invoice #8372,Phishing Email
+"Hi John, hope you are doing well! Are we still meeting for lunch today at 12:30pm?",david@gmail.com,Lunch today?,Safe Email
+"From CEO: I am currently in a conference with limited cell reception. Please process an urgent wire transfer to the attached vendor account by 2pm. Keep this confidential.",ceo@corp-executive.com,Urgent Wire Request,Phishing Email
+"Your package delivery failed due to incorrect address information. Click here immediately to update address and pay $1.50 redelivery fee: http://tracking-post.xyz/update",support@postal-delivery.xyz,Package Delivery Exception,Phishing Email
+"The weekly company all-hands will be held tomorrow at 10:00 AM in Auditorium B. Virtual attendance link: https://meet.company.com/all-hands",hr@company.com,Weekly All-Hands Reminder,Safe Email
+"Security Alert: A new login was detected from Russia. If this was not you, verify identity now: http://10.12.34.56/login",alerts@security-center.ru,Unauthorized Login Detected,Phishing Email
+"Your monthly statement for July is now available online. Log in to your online banking portal to view it: https://chase.com/statements",statements@chase.com,Monthly Statement Available,Safe Email
+"URGENT: Password expires in 2 hours. Reset your corporate password immediately: http://login-portal.work/reset-password",admin@it-support.work,Password Expiry Notice,Phishing Email
+"Here is the draft presentation for tomorrow's client pitch. Let me know if you want to change any slides.",sarah@agency.com,Client Presentation Draft,Safe Email
+"Your Netflix subscription has expired. Update your billing information within 24 hours to continue streaming: http://netflix-billing-update.club/renew",service@netflix-alert.club,Account On Hold: Update Payment,Phishing Email
+"Reminder: Don't forget to submit your weekly timesheet by 5:00 PM today.",finance@company.com,Timesheet Reminder,Safe Email
+"Action Required: Unclaimed tax refund of $1,240.00 awaiting deposit. Confirm bank details: http://172.16.0.4/irs-refund",refund@tax-services.xyz,Notification of Unclaimed Tax Refund,Phishing Email
+"Thanks for your order! Your receipt is attached. Tracking info will be sent once the item ships. Official store: https://store.apple.com",orders@apple.com,Your Apple Store Receipt,Safe Email

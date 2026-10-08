@@ -21,6 +21,7 @@ from src.preprocessing.feature_extractor import FeatureExtractor
 from src.statistical.naive_bayes import NaiveBayesClassifier
 from src.statistical.evaluation import ModelEvaluator
 from src.dss.decision_support import DecisionSupportSystem
+from src.dss.batch_analyzer import BatchCSVAnalyzer
 from src.adversarial.minimax_engine import AdversarialSearchEngine
 from src.expert_system.knowledge_base import KnowledgeBase
 from data.benchmark_dataset import generate_benchmark_emails
@@ -101,6 +102,16 @@ class AppRequestHandler(BaseHTTPRequestHandler):
         elif path == "/api/rules":
             rules = [r.to_dict() for r in KnowledgeBase.get_default_rules()]
             self.send_json({"rules": rules})
+            return
+
+        elif path == "/api/sample-csv":
+            sample_path = os.path.join(BASE_DIR, "data", "sample_email_list.csv")
+            if os.path.exists(sample_path):
+                with open(sample_path, "r", encoding="utf-8") as f:
+                    csv_text = f.read()
+                self.send_json({"csv_text": csv_text, "filename": "sample_email_list.csv"})
+            else:
+                self.send_json({"error": "Sample CSV not found"}, 404)
             return
 
         elif path == "/api/benchmark":
@@ -199,6 +210,18 @@ class AppRequestHandler(BaseHTTPRequestHandler):
                 "test_size": len(test),
                 "metrics": metrics
             })
+            return
+
+        elif path == "/api/batch-analyze":
+            csv_content = req_data.get("csv_content", "") or req_data.get("csv_text", "")
+            max_rows = int(req_data.get("max_rows", 1000))
+            if not csv_content:
+                self.send_json({"error": "No CSV content provided in request"}, 400)
+                return
+
+            analyzer = BatchCSVAnalyzer(dss=self.dss)
+            report = analyzer.analyze_csv_text(csv_content, max_rows=max_rows)
+            self.send_json(report)
             return
 
         self.send_json({"error": "Endpoint not found"}, 404)

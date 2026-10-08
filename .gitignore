@@ -56,3 +56,4 @@ env/
 *.pth
 !models/.gitkeep
 !data/.gitkeep
+!data/sample_email_list.csv

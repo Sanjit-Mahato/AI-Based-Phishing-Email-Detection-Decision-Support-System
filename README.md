@@ -145,11 +145,10 @@ python3 cli.py
 python3 run_server.py
 ```
 Open **[http://localhost:8080](http://localhost:8080)** in your browser to access:
-- **Live Email Analyzer**: Real-time feature detection, risk index gauge, and security advisories.
-- **Expert System Tab**: Visual Backward-Chaining Proof Tree and Forward Chaining trace.
-- **Adversarial Sandbox Tab**: Minimax game tree and tactics sensitivity matrix.
-- **Benchmark Studio Tab**: Live Month 2 verification tables and Kaggle evaluator.
-- **Team & Syllabus Tab**: Project background and NIET curriculum alignment.
+- **Bulk Email CSV Threat Intelligence & Audit Scanner**: Upload any CSV email list (auto-detects sender, subject, body columns) to generate instant threat audits, 5 KPI executive metrics, indicator prevalence charts, filtered investigation tables, and downloadable CSV audit reports.
+- **Live Email Analyzer**: Real-time feature detection, risk index gauge, explainable deduction reasoning, and actionable security advisories.
+- **Adversarial Security Matrix**: Minimax game tree and evasive attacker tactics sensitivity matrix.
+- **Algorithmic Evaluation Studio**: Live verification tables comparing Heuristic, Expert System, Naive Bayes, and Combined DSS.
 
 ### 4. Run Automated Test Suite
 ```bash
@@ -165,6 +164,7 @@ python3 -m unittest discover -s tests -p "test_*.py"
 │   ├── benchmark_train_140.json      # 140 training sample emails
 │   ├── benchmark_test_60.json        # 60 test sample emails
 │   ├── sample_benchmark_200.json     # Full 200 benchmark sample emails
+│   ├── sample_email_list.csv         # 15-sample batch email CSV for instant testing
 │   └── kaggle_loader.py              # Streaming loader for Phishing_Email.csv
 ├── models/
 │   └── trained_naive_bayes.json      # Serialized Naive Bayes model parameters
@@ -174,12 +174,12 @@ python3 -m unittest discover -s tests -p "test_*.py"
 │   ├── adversarial/                  # Unit 2: Minimax & Alpha-Beta game search
 │   ├── expert_system/                # Unit 3: Horn clauses & proof tree engines
 │   ├── statistical/                  # Unit 4: Naive Bayes & evaluation metrics
-│   ├── dss/                          # Blended Decision Support System
+│   ├── dss/                          # Blended Decision Support System & Batch CSV Analyzer
 │   └── server.py                     # Built-in REST API & static web server
 ├── web/
-│   ├── index.html                    # Modern cyber SOC dashboard
-│   ├── css/styles.css                # Glassmorphic dark cyber theme
-│   └── js/                           # Proof tree & game tree visualizers
+│   ├── index.html                    # Single-page SOCRadar enterprise blue/white dashboard
+│   ├── css/styles.css                # Enterprise SOCRadar design system & typography
+│   └── js/                           # Real-time scan controllers & CSV export engines
 ├── tests/                            # Unit and integration test suites
 ├── notebooks/
 │   └── run_experiments.py            # Feature prevalence & log-odds importance
