@@ -63,6 +63,10 @@ class AppRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.end_headers()
 
+    def do_HEAD(self):
+        """Handle HEAD requests."""
+        self.do_GET()
+
     def send_json(self, data: Any, status_code: int = 200):
         body = json.dumps(data, indent=2).encode("utf-8")
         self.send_response(status_code)
