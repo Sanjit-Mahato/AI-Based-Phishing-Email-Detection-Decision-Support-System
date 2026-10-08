@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Based Phishing Email Detection & Decision Support System</title>
+  <meta name="description" content="AI-driven cyber-defense decision support system using Heuristic Search, Adversarial Minimax, Horn Clauses, and Naive Bayes.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <div class="brand-icon">🛡️</div>
+        <div>
+          <h1 class="brand-title">AI Phishing Detection & Decision Support System</h1>
+          <p class="brand-subtitle">Autonomous Decision Support System • NIET CCSAI0301 • Group 1 (Aahvaan)</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="badge-tag pulse">SYSTEM OPERATIONAL</span>
+        <span class="badge-tag">SDG 9: INNOVATION</span>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="nav-tab-btn active" data-tab="analyzer" role="tab" id="tab-btn-analyzer">
+        <span>🔍</span> Live Email Analyzer
+      </button>
+      <button class="nav-tab-btn" data-tab="expert" role="tab" id="tab-btn-expert">
+        <span>🧠</span> Unit 3: Expert System Proof
+      </button>
+      <button class="nav-tab-btn" data-tab="adversarial" role="tab" id="tab-btn-adversarial">
+        <span>⚔️</span> Unit 2: Adversarial Minimax
+      </button>
+      <button class="nav-tab-btn" data-tab="benchmark" role="tab" id="tab-btn-benchmark">
+        <span>📊</span> Unit 4: Benchmark & Evaluation
+      </button>
+      <button class="nav-tab-btn" data-tab="team" role="tab" id="tab-btn-team">
+        <span>👥</span> Team & Syllabus
+      </button>
+    </nav>
+
+    <!-- Tab 1: Live Email Analyzer -->
+    <main class="tab-pane active" id="tab-analyzer" role="tabpanel">
+      <div class="grid-2col">
+        <!-- Input Form Card -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h2 class="card-title"><span>📧</span> Incoming Email Stream</h2>
+            <span class="badge-tag" id="input-status">READY FOR ANALYSIS</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pre-configured Attack & Defense Scenarios:</label>
+            <div class="presets-container" id="presets-container">
+              <!-- Loaded dynamically via JavaScript -->
+            </div>
+          </div>
+
+          <form id="email-form">
+            <div class="form-group">
+              <label class="form-label" for="email-raw">Raw Email Headers & Message Content</label>
+              <textarea 
+                id="email-raw" 
+                class="form-textarea" 
+                placeholder="Paste raw email with headers (From:, Reply-To:, Subject:, Attachment:) or raw text body..."
+                rows="10"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary" id="btn-analyze">
+              <span>⚡</span> Run Multi-Module AI Inference
+            </button>
+          </form>
+        </div>
+
+        <!-- Output / Decision Support Card -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h2 class="card-title"><span>🎯</span> Decision Support Verdict</h2>
+            <span class="badge-tag" id="eval-speed">LATENCY: ~12ms</span>
+          </div>
+
+          <!-- Dynamic Verdict Card -->
+          <div class="verdict-card suspicious" id="verdict-banner">
+            <div class="verdict-title" id="verdict-title">SUSPICIOUS</div>
+            <p class="verdict-subtitle" id="verdict-summary">
+              Evaluating indicators across content, headers, and destination links...
+            </p>
+
+            <div class="metrics-row">
+              <div class="metric-box">
+                <div class="metric-label">Composite Risk Index</div>
+                <div class="metric-value" id="val-risk-index" style="color: var(--cyan-primary);">-- / 100</div>
+              </div>
+              <div class="metric-box">
+                <div class="metric-label">Bayesian Confidence</div>
+                <div class="metric-value" id="val-confidence" style="color: var(--warning);">--%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module Snapshot Summary -->
+          <div class="card-header" style="margin-top: 16px;">
+            <h3 class="card-title" style="font-size: 14px;"><span>📋</span> Multi-Module Agreement Matrix</h3>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+            <div class="metric-box">
+              <div class="metric-label">Unit 1 Heuristic Score</div>
+              <div id="u1-score-disp" style="font-family: var(--font-mono); font-size: 13px; font-weight: 600;">--</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Unit 3 Horn Clause Logic</div>
+              <div id="u3-rule-disp" style="font-family: var(--font-mono); font-size: 13px; font-weight: 600;">--</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Unit 4 Posterior P(Phish)</div>
+              <div id="u4-prob-disp" style="font-family: var(--font-mono); font-size: 13px; font-weight: 600;">--</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Unit 2 Minimax Vulnerability</div>
+              <div id="u2-game-disp" style="font-family: var(--font-mono); font-size: 13px; font-weight: 600;">--</div>
+            </div>
+          </div>
+
+          <!-- Security Advisories -->
+          <div class="card-header" style="margin-top: 16px;">
+            <h3 class="card-title" style="font-size: 14px;"><span>🛡️</span> Actionable Mitigation Recommendations</h3>
+          </div>
+          <div class="advisory-list" id="advisory-container">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Indicator Grid -->
+      <div class="glass-card" style="margin-top: 24px;">
+        <div class="card-header">
+          <h2 class="card-title"><span>🔬</span> Extracted Risk Indicators & Evidence Signals</h2>
+          <span class="badge-tag">7 CORE SYLLABUS INDICATORS</span>
+        </div>
+        <div class="features-grid" id="features-grid-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Tab 2: Expert System & Horn Clause Proof (Unit 3) -->
+    <section class="tab-pane" id="tab-expert" role="tabpanel">
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h2 class="card-title"><span>🌳</span> Backward Chaining Goal Proof Tree</h2>
+          <span class="badge-tag">GOAL-DRIVEN REASONING</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+          The Expert System initiates backward chaining from the top-level query goal <code style="color: var(--cyan-primary);">phishing</code>.
+          If premises require derived facts, sub-goals are recursively evaluated down to asserted indicator facts.
+        </p>
+        <div class="tree-container" id="proof-tree-view">
+          <div style="color: var(--text-muted); text-align: center; padding: 40px;">
+            Analyze an email in Tab 1 to generate and inspect its Backward Chaining Proof Tree.
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <!-- Forward Chaining Trace -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h2 class="card-title"><span>⚡</span> Forward Chaining Deduction Trace</h2>
+            <span class="badge-tag">FIXED-POINT INFERENCE</span>
+          </div>
+          <div id="forward-chain-trace" style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); line-height: 1.8;">
+            No inference run yet.
+          </div>
+        </div>
+
+        <!-- 13 Horn Clause Rules Catalog -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h2 class="card-title"><span>📜</span> Knowledge Base: 13 Horn Clauses</h2>
+            <span class="badge-tag">MODULE 3 REPOSITORY</span>
+          </div>
+          <div id="rules-catalog-view" style="max-height: 480px; overflow-y: auto;">
+            <!-- Loaded dynamically from API -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Adversarial Search Sandbox (Unit 2) -->
+    <section class="tab-pane" id="tab-adversarial" role="tabpanel">
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h2 class="card-title"><span>⚔️</span> Two-Player Zero-Sum Game: Attacker vs. Detector</h2>
+          <span class="badge-tag">MINIMAX WITH ALPHA-BETA PRUNING</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+          Cyber threats are adversarial. The <strong>Attacker (MAX)</strong> selects evasion tactics to bypass detection filters,
+          while the <strong>Detector (MIN)</strong> activates deep inspection countermeasures to neutralize evasion while bounding computational cost.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px;">
+          <div class="metric-box">
+            <div class="metric-label">Optimal Attacker Move</div>
+            <div id="adv-optimal-tactic" style="font-size: 16px; font-weight: 700; color: var(--danger);">--</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Game Payoff Value</div>
+            <div id="adv-game-payoff" style="font-size: 16px; font-weight: 700; color: var(--cyan-primary);">--</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Search Pruning Efficiency</div>
+            <div id="adv-pruning-stats" style="font-size: 14px; font-weight: 700; color: var(--success);">--</div>
+          </div>
+        </div>
+
+        <!-- Tactics Matrix Table -->
+        <h3 style="font-size: 14px; margin-bottom: 10px; color: #fff;">Perturbation Sensitivity Matrix</h3>
+        <div style="overflow-x: auto;">
+          <table class="data-table" id="tactics-matrix-table">
+            <thead>
+              <tr>
+                <th>Tactic</th>
+                <th>Target Feature</th>
+                <th>Cost</th>
+                <th>Baseline Score</th>
+                <th>Baseline Verdict</th>
+                <th>With Deep Defense</th>
+                <th>Evasion Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Visual Game Tree View -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title"><span>🌿</span> Minimax Alpha-Beta Search Game Tree</h2>
+          <span class="badge-tag">DEPTH 2 TREE</span>
+        </div>
+        <div class="tree-container" id="adversarial-tree-view">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Benchmark & Evaluation Studio (Unit 4) -->
+    <section class="tab-pane" id="tab-benchmark" role="tabpanel">
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h2 class="card-title"><span>📈</span> Month 2 Progress Report Benchmark Verification</h2>
+          <button class="btn-preset" id="btn-run-benchmark">🔄 Re-run Benchmark Evaluation</button>
+        </div>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+          Exact comparative results across the 60 test emails (28 Phishing, 32 Legitimate) from Section 8 of the Month 2 Review Report:
+        </p>
+
+        <div style="overflow-x: auto;">
+          <table class="data-table" id="benchmark-table">
+            <thead>
+              <tr>
+                <th>Detector</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>False +</th>
+                <th>False -</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filled from /api/benchmark -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="metric-box" style="margin-top: 16px; background: rgba(6, 182, 212, 0.05); border-color: rgba(6, 182, 212, 0.2);">
+          <div class="metric-label" style="color: var(--cyan-primary);">5-Fold Cross-Validation (Naive Bayes)</div>
+          <div id="cv-scores-disp" style="font-family: var(--font-mono); font-size: 14px; margin-top: 4px;">Loading CV folds...</div>
+        </div>
+      </div>
+
+      <!-- Real-World Kaggle Dataset Evaluation -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title"><span>🗄️</span> Real-World Kaggle Dataset Streaming Evaluator</h2>
+          <span class="badge-tag">Phishing_Email.csv</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">
+          Evaluate the pipeline on actual emails sampled from the real-world dataset (175,000+ emails):
+        </p>
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+          <select id="kaggle-sample-select" class="form-select" style="max-width: 200px;">
+            <option value="500">500 Samples</option>
+            <option value="1000" selected>1,000 Samples</option>
+            <option value="2000">2,000 Samples</option>
+          </select>
+          <button class="btn-primary" id="btn-eval-kaggle" style="width: auto; padding: 10px 24px;">
+            Run Evaluation on Kaggle Dataset
+          </button>
+        </div>
+        <div id="kaggle-results-container" style="display: none;">
+          <!-- Dynamically displayed -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 5: Team & Syllabus Info -->
+    <section class="tab-pane" id="tab-team" role="tabpanel">
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h2 class="card-title"><span>🎓</span> Project Background & Curriculum Compliance</h2>
+          <span class="badge-tag">NIET AUTONOMOUS</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; font-size: 13px;">
+          <div>
+            <strong style="color: #fff;">Course Code & Name:</strong> CCSAI0301 - Artificial Intelligence<br>
+            <strong style="color: #fff;">Program & Branch:</strong> BTech (CSE), Semester 3, Section F<br>
+            <strong style="color: #fff;">Faculty Supervisor:</strong> Dr. Mohd Nazim
+          </div>
+          <div>
+            <strong style="color: #fff;">Group / Team:</strong> Aahvaan / Group 1<br>
+            <strong style="color: #fff;">Project Title:</strong> AI-Based Phishing Email Detection & Decision Support System<br>
+            <strong style="color: #fff;">UN SDG Alignment:</strong> SDG 9 (Industry, Innovation & Infrastructure)
+          </div>
+        </div>
+      </div>
+
+      <!-- Syllabus Mapping Matrix -->
+      <div class="glass-card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <h2 class="card-title"><span>📚</span> AI Syllabus Module Mapping</h2>
+          <span class="badge-tag">UNITS 1 - 4</span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Syllabus Unit</th>
+              <th>Core Concept</th>
+              <th>Implementation in Project</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--cyan-primary); font-weight: 700;">Unit 1: Problem Solving & Search</td>
+              <td>Informed Search & Heuristic Evaluation Functions</td>
+              <td>Weighted Heuristic Scorer for risk triage; Greedy minimal evasion path search.</td>
+            </tr>
+            <tr>
+              <td style="color: var(--danger); font-weight: 700;">Unit 2: Adversarial Search</td>
+              <td>Game Playing, Minimax Algorithm, Alpha-Beta Pruning</td>
+              <td>Attacker evasion vs detector countermeasure zero-sum game; Alpha-Beta cutoff engine.</td>
+            </tr>
+            <tr>
+              <td style="color: var(--purple); font-weight: 700;">Unit 3: Knowledge Representation</td>
+              <td>Horn Clauses, Forward & Backward Chaining, Frames</td>
+              <td>13 Horn clause rules; Forward chaining deduction; Backward chaining proof trees for explainability.</td>
+            </tr>
+            <tr>
+              <td style="color: var(--warning); font-weight: 700;">Unit 4: Statistical Reasoning</td>
+              <td>Bayes' Theorem, Naive Bayes Classifier, Evaluation Metrics</td>
+              <td>Log-space Naive Bayes with Laplace smoothing; 5-Fold cross validation and confusion matrix.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Team Members -->
+      <div class="glass-card">
+        <div class="card-header">
+          <h2 class="card-title"><span>👥</span> Team Aahvaan (Group 1) Members & Assigned Roles</h2>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="member-avatar">MR</div>
+            <div class="member-name">Maneesh Ray</div>
+            <div class="member-role">Team Lead & AI Solution Architect</div>
+            <div class="member-desc">Roll: 0261DCS006. Architected overall multi-module pipeline, system integration, and project coordination.</div>
+          </div>
+          <div class="team-card">
+            <div class="member-avatar">CK</div>
+            <div class="member-name">Chandan Kumar</div>
+            <div class="member-role">Search Algorithm & Optimisation Analyst</div>
+            <div class="member-desc">Roll: 0261DCS003. Designed heuristic scoring functions, weights calibration, and greedy feature prioritization.</div>
+          </div>
+          <div class="team-card">
+            <div class="member-avatar">D</div>
+            <div class="member-name">Devanshu</div>
+            <div class="member-role">Heuristic & Decision Intelligence Specialist</div>
+            <div class="member-desc">Roll: 0261DCS016. Engineered blended Decision Support System logic reconciling probability with rules.</div>
+          </div>
+          <div class="team-card" style="border-color: var(--cyan-primary);">
+            <div class="member-avatar">SK</div>
+            <div class="member-name">Sanjit Kumar</div>
+            <div class="member-role">Knowledge Representation & Expert System Designer</div>
+            <div class="member-desc">Roll: 0261DCS013. Designed the 13 Horn clause knowledge base, forward chaining inference, and backward chaining proof tree.</div>
+          </div>
+          <div class="team-card">
+            <div class="member-avatar">AS</div>
+            <div class="member-name">Amresh Singh</div>
+            <div class="member-role">Statistical AI Analyst & Documentation Lead</div>
+            <div class="member-desc">Roll: 0261DCS005. Formulated Naive Bayes model with Laplace smoothing, 5-fold cross-validation, and metrics documentation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/proof_tree.js"></script>
+  <script src="js/adversarial_view.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
