@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadPresets();
   setupScannerForm();
   setupBatchCSVScanner();
+  setupEmailDetailModal();
 });
 
 // Load Presets
@@ -418,7 +419,7 @@ function renderBatchReport(report) {
   reportArea.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-// Render Filtered Table Rows
+// Render Filtered Table Rows with Clickable Rows & Read Button
 function renderBatchTableRows(items, filter) {
   const tbody = document.querySelector("#batch-results-table tbody");
   if (!tbody || !items) return;
@@ -429,7 +430,7 @@ function renderBatchTableRows(items, filter) {
   });
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 24px;">No emails match the selected filter.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--text-muted); padding: 24px;">No emails match the selected filter.</td></tr>`;
     return;
   }
 
@@ -442,10 +443,12 @@ function renderBatchTableRows(items, filter) {
       : `<span style="color: var(--text-muted); font-size: 11px;">None</span>`;
 
     return `
-      <tr>
+      <tr class="clickable-row" data-row-id="${row.row_id}" title="Click to view full email content">
         <td style="font-family: var(--font-mono); color: var(--text-muted); font-weight: 600;">#${row.row_id}</td>
         <td style="font-weight: 600; font-size: 12px; color: var(--text-dark);">${escapeHtml(row.sender)}</td>
-        <td style="font-weight: 600; font-size: 12px; color: var(--blue-primary);">${escapeHtml(row.subject)}</td>
+        <td style="font-weight: 600; font-size: 12px; color: var(--blue-primary);">
+          <span style="text-decoration: underline; text-decoration-color: rgba(26, 86, 219, 0.3);">${escapeHtml(row.subject)}</span>
+        </td>
         <td style="font-size: 11px; color: var(--text-muted); max-width: 240px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(row.snippet)}">
           ${escapeHtml(row.snippet)}
         </td>
@@ -453,10 +456,179 @@ function renderBatchTableRows(items, filter) {
         <td style="font-family: var(--font-mono); font-weight: 700; color: ${riskColor};">${row.risk_score}</td>
         <td>${flagsBadges}</td>
         <td style="font-size: 11px; color: var(--text-dark); font-weight: 600;">${escapeHtml(row.action)}</td>
+        <td style="text-align: center;">
+          <button type="button" class="btn-table-view" data-row-id="${row.row_id}">
+            <span>👁️</span> Read
+          </button>
+        </td>
       </tr>
     `;
   }).join('');
+
+  // Attach click listener to table rows and read buttons
+  tbody.querySelectorAll(".clickable-row").forEach(tr => {
+    tr.addEventListener("click", () => {
+      const rowId = parseInt(tr.dataset.rowId, 10);
+      openEmailDetailModal(rowId);
+    });
+  });
 }
+
+// ==========================================================================
+// Email Detail Inspection Modal Controller
+// ==========================================================================
+let activeModalEmail = null;
+
+function setupEmailDetailModal() {
+  const modal = document.getElementById("email-detail-modal");
+  const closeBtn = document.getElementById("btn-close-modal");
+  const doneBtn = document.getElementById("btn-modal-done");
+  const copyBtn = document.getElementById("btn-copy-email-content");
+  const scannerBtn = document.getElementById("btn-load-in-scanner");
+
+  if (!modal) return;
+
+  function closeModal() {
+    modal.classList.remove("open");
+    activeModalEmail = null;
+  }
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (doneBtn) doneBtn.addEventListener("click", closeModal);
+
+  // Close when clicking the backdrop
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Escape key handler
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
+  });
+
+  // Copy email text button
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      if (!activeModalEmail) return;
+      const textToCopy = activeModalEmail.full_email || activeModalEmail.body || activeModalEmail.snippet;
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        showToast("Email text copied to clipboard!");
+      } catch (err) {
+        const ta = document.createElement("textarea");
+        ta.value = textToCopy;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showToast("Email text copied to clipboard!");
+      }
+    });
+  }
+
+  // Load into single live scanner
+  if (scannerBtn) {
+    scannerBtn.addEventListener("click", () => {
+      if (!activeModalEmail) return;
+      const emailInput = document.getElementById("email-content");
+      if (emailInput) {
+        emailInput.value = activeModalEmail.full_email || activeModalEmail.body || activeModalEmail.snippet;
+        closeModal();
+        const scannerSec = document.getElementById("single-scanner-section");
+        if (scannerSec) {
+          scannerSec.scrollIntoView({ behavior: "smooth" });
+        }
+        const scanBtn = document.getElementById("btn-scan");
+        if (scanBtn) {
+          setTimeout(() => scanBtn.click(), 300);
+        }
+        showToast(`Loaded Email #${activeModalEmail.row_id} into Live Scanner.`);
+      }
+    });
+  }
+}
+
+function openEmailDetailModal(rowId) {
+  if (!currentBatchReportData || !currentBatchReportData.results) return;
+
+  const item = currentBatchReportData.results.find(r => r.row_id === rowId);
+  if (!item) return;
+
+  activeModalEmail = item;
+  const modal = document.getElementById("email-detail-modal");
+  if (!modal) return;
+
+  // Header info
+  document.getElementById("modal-email-id").textContent = `#${item.row_id}`;
+  document.getElementById("modal-email-subject").textContent = item.subject || "(No Subject)";
+  document.getElementById("modal-email-sender").textContent = item.sender || "N/A";
+
+  const replyToWrap = document.getElementById("modal-reply-to-wrap");
+  const replyToElem = document.getElementById("modal-email-reply-to");
+  if (item.reply_to && item.reply_to !== item.sender) {
+    replyToElem.textContent = item.reply_to;
+    replyToWrap.style.display = "inline";
+  } else {
+    replyToWrap.style.display = "none";
+  }
+
+  // Verdict & Risk
+  const verdictElem = document.getElementById("modal-email-verdict");
+  verdictElem.textContent = item.verdict.toUpperCase();
+  verdictElem.className = item.verdict === "Phishing" ? "badge-flagged" : (item.verdict === "Suspicious" ? "badge-flagged" : "badge-clean");
+
+  const riskElem = document.getElementById("modal-email-risk");
+  riskElem.textContent = `Risk: ${item.risk_score}/100 (${item.confidence}% Conf)`;
+  riskElem.style.color = item.risk_score >= 60 ? "var(--danger-red)" : (item.risk_score >= 30 ? "var(--warning-amber)" : "var(--success-green)");
+
+  // Reasoning
+  document.getElementById("modal-email-reason").textContent = item.primary_reason || "Evaluation completed with no anomalous indicators.";
+
+  // Active Flags Badges
+  const flagsContainer = document.getElementById("modal-email-flags");
+  if (item.active_flags && item.active_flags.length > 0) {
+    flagsContainer.innerHTML = item.active_flags.map(flag => `
+      <span class="badge-flagged" style="font-size: 11px; padding: 4px 8px;">
+        ⚠️ ${flag.replace(/_/g, ' ')}
+      </span>
+    `).join('');
+  } else {
+    flagsContainer.innerHTML = `<span class="badge-clean" style="font-size: 11px; padding: 4px 8px;">✓ No Threat Indicators Triggered</span>`;
+  }
+
+  // Detected URLs
+  const urlsBox = document.getElementById("modal-urls-box");
+  const urlsList = document.getElementById("modal-urls-list");
+  if (item.urls && item.urls.length > 0) {
+    urlsBox.style.display = "block";
+    urlsList.innerHTML = item.urls.map(u => `<div class="modal-url-pill">🔗 ${escapeHtml(u)}</div>`).join('');
+  } else {
+    urlsBox.style.display = "none";
+  }
+
+  // Detected Attachments
+  const attBox = document.getElementById("modal-attachments-box");
+  const attList = document.getElementById("modal-attachments-list");
+  if (item.attachments && item.attachments.length > 0) {
+    attBox.style.display = "block";
+    attList.innerHTML = item.attachments.map(a => `<div class="modal-attachment-pill">📎 ${escapeHtml(a)}</div>`).join('');
+  } else {
+    attBox.style.display = "none";
+  }
+
+  // Full Email Content
+  const fullContentElem = document.getElementById("modal-email-content");
+  fullContentElem.textContent = item.full_email || item.body || item.snippet;
+
+  // Action Recommendation
+  document.getElementById("modal-email-action").textContent = item.action || "Standard Verification";
+
+  // Display modal
+  modal.classList.add("open");
+}
+
 
 // Client-Side CSV Report Generator & Downloader
 function exportBatchCsvReport() {

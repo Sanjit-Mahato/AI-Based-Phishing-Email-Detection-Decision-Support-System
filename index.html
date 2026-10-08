@@ -195,7 +195,8 @@
                 <th style="width: 110px;">Verdict</th>
                 <th style="width: 80px;">Risk</th>
                 <th style="width: 160px;">Triggered Indicators</th>
-                <th style="width: 180px;">Security Action</th>
+                <th style="width: 160px;">Security Action</th>
+                <th style="width: 85px; text-align: center;">Email</th>
               </tr>
             </thead>
             <tbody>
@@ -279,6 +280,77 @@
     </div>
 
   </main>
+
+  <!-- Email Detail Inspection Modal -->
+  <div id="email-detail-modal" class="modal-backdrop">
+    <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-email-subject">
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <span class="badge-modal-id" id="modal-email-id">#1</span>
+          <div>
+            <h3 class="modal-email-title" id="modal-email-subject">Email Subject</h3>
+            <div class="modal-email-meta">
+              <span><strong>From:</strong> <span id="modal-email-sender"></span></span>
+              <span id="modal-reply-to-wrap" style="display: none;"><strong>Reply-To:</strong> <span id="modal-email-reply-to"></span></span>
+            </div>
+          </div>
+        </div>
+        <div class="modal-header-right">
+          <div class="modal-verdict-wrap">
+            <span class="badge-flagged" id="modal-email-verdict">PHISHING</span>
+            <span class="modal-risk-pill" id="modal-email-risk">Risk: 100/100</span>
+          </div>
+          <button type="button" class="btn-modal-close" id="btn-close-modal" title="Close (Esc)" aria-label="Close">✕</button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Threat Analysis & Reasoning -->
+        <div class="modal-threat-summary" id="modal-threat-summary-box">
+          <div class="modal-section-title">🛡️ Decision Reasoning & Security Triage</div>
+          <p class="modal-reason-text" id="modal-email-reason"></p>
+          
+          <div class="modal-indicators-list" id="modal-email-flags"></div>
+
+          <div id="modal-urls-box" style="display: none; margin-top: 12px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Detected Embedded Links:</div>
+            <div id="modal-urls-list" class="modal-pills-list"></div>
+          </div>
+
+          <div id="modal-attachments-box" style="display: none; margin-top: 10px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Detected Attachments:</div>
+            <div id="modal-attachments-list" class="modal-pills-list"></div>
+          </div>
+        </div>
+
+        <!-- Full Email Content -->
+        <div class="modal-content-section">
+          <div class="modal-content-header">
+            <span class="modal-section-title">📄 Full Email Message Content</span>
+            <button type="button" class="btn-copy-raw" id="btn-copy-email-content">
+              <span>📋</span> Copy Text
+            </button>
+          </div>
+          <div class="email-full-content-viewer" id="modal-email-content">
+            <!-- Full email body rendered here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="modal-footer-rec">
+          <span style="font-size: 12px; color: var(--text-muted); display: block;">Recommended Action:</span>
+          <strong id="modal-email-action" style="color: var(--text-dark); font-size: 13px;">Quarantine / Delete Immediately</strong>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="button" class="btn-secondary" id="btn-load-in-scanner" style="padding: 9px 16px; font-size: 12px;">
+            <span>⚡</span> Test in Live Scanner
+          </button>
+          <button type="button" class="btn-primary" id="btn-modal-done">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Toast Container -->
   <div id="toast-box"></div>
