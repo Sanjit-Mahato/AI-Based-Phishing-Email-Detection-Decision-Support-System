@@ -37,7 +37,6 @@ const INDICATOR_DETAILS = {
 document.addEventListener("DOMContentLoaded", () => {
   loadPresets();
   setupScannerForm();
-  loadBenchmarkData();
   setupBatchCSVScanner();
 });
 
@@ -196,60 +195,8 @@ function renderAssessment(data) {
       reasoningElem.textContent = data.summary_explanation || "No anomalous risk indicators met threat criteria.";
     }
   }
-
-  // 6. Adversarial Matrix Table
-  const advTableBody = document.querySelector("#adv-table tbody");
-  const advData = data.modules?.unit_2_adversarial;
-  if (advTableBody && advData?.tactics_matrix) {
-    advTableBody.innerHTML = advData.tactics_matrix.map(row => {
-      const statusBadge = row.evades_baseline 
-        ? `<span style="color: var(--danger-red); font-weight: 700;">Evades Standard</span>` 
-        : `<span style="color: var(--success-green); font-weight: 600;">Blocked</span>`;
-
-      return `
-        <tr>
-          <td style="font-weight: 600;">${row.name}</td>
-          <td><code style="font-size: 11px; color: var(--blue-primary);">${row.suppressed_features.join(', ')}</code></td>
-          <td>${row.baseline_verdict} (Score ${row.baseline_score})</td>
-          <td>${statusBadge}</td>
-        </tr>
-      `;
-    }).join('');
-
-    const advPill = document.getElementById("adv-summary-pill");
-    if (advPill && advData.optimal_attacker_tactic) {
-      advPill.textContent = `Optimal Counter: ${advData.optimal_attacker_tactic.name}`;
-    }
-  }
 }
 
-// Load Benchmark Data for Single-Page Table
-async function loadBenchmarkData() {
-  const tableBody = document.querySelector("#benchmark-table tbody");
-  const cvDisp = document.getElementById("cv-mean-disp");
-  if (!tableBody) return;
-
-  try {
-    const res = await fetch("/api/benchmark");
-    const data = await res.json();
-
-    tableBody.innerHTML = (data.table || []).map(row => `
-      <tr>
-        <td style="font-weight: 600;">${row.detector}</td>
-        <td style="font-weight: 700; color: var(--blue-primary);">${(row.accuracy * 100).toFixed(1)}%</td>
-        <td>${(row.precision * 100).toFixed(1)}%</td>
-        <td>${(row.recall * 100).toFixed(1)}%</td>
-        <td style="color: ${row.false_positives > 0 ? 'var(--warning-amber)' : 'inherit'}; font-weight: 600;">${row.false_positives}</td>
-      </tr>
-    `).join('');
-
-    if (cvDisp && data.cross_validation) {
-      cvDisp.textContent = `${(data.cross_validation.mean_accuracy * 100).toFixed(1)}% (5-Fold Cross Validation)`;
-    }
-  } catch (err) {
-    console.error("Error loading benchmark:", err);
-  }
-}
 
 // Toast helper
 function showToast(msg) {
