@@ -3,6 +3,7 @@ Minimax & Alpha-Beta Adversarial Search Engine (Unit/Module 2: Adversarial Searc
 Simulates attacker evasion vs detector countermeasures as a two-player zero-sum game.
 """
 
+import math
 from typing import Dict, List, Any, Tuple, Optional
 from .evasion_tactics import EvasionTacticsRegistry, AdversarialTactic
 from ..heuristics.baseline_scorer import BaselineHeuristicScorer
@@ -132,8 +133,8 @@ class AdversarialSearchEngine:
             "depth": depth,
             "type": "MAX (Attacker)" if is_maximizing else "MIN (Detector)",
             "children": [],
-            "alpha": alpha,
-            "beta": beta
+            "alpha": None if math.isinf(alpha) else alpha,
+            "beta": None if math.isinf(beta) else beta
         }
 
         # Terminal state: depth limit reached
@@ -169,8 +170,8 @@ class AdversarialSearchEngine:
                 alpha = max(alpha, eval_val := max_eval)
                 if beta <= alpha:
                     self.pruning_count += 1
-                    node_dict["pruned_at_alpha"] = alpha
-                    node_dict["pruned_at_beta"] = beta
+                    node_dict["pruned_at_alpha"] = None if math.isinf(alpha) else alpha
+                    node_dict["pruned_at_beta"] = None if math.isinf(beta) else beta
                     break  # Beta cutoff / Alpha-Beta Pruning!
 
             node_dict["value"] = max_eval
@@ -213,8 +214,8 @@ class AdversarialSearchEngine:
                 beta = min(beta, min_eval)
                 if beta <= alpha:
                     self.pruning_count += 1
-                    node_dict["pruned_at_alpha"] = alpha
-                    node_dict["pruned_at_beta"] = beta
+                    node_dict["pruned_at_alpha"] = None if math.isinf(alpha) else alpha
+                    node_dict["pruned_at_beta"] = None if math.isinf(beta) else beta
                     break  # Alpha cutoff / Alpha-Beta Pruning!
 
             node_dict["value"] = min_eval

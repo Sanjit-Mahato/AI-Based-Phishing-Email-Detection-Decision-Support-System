@@ -7,6 +7,7 @@ Uses Python standard library (http.server) for 100% dependency-free execution.
 import os
 import sys
 import json
+import math
 import mimetypes
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from socketserver import ThreadingMixIn
@@ -68,7 +69,19 @@ class AppRequestHandler(BaseHTTPRequestHandler):
         self.do_GET()
 
     def send_json(self, data: Any, status_code: int = 200):
-        body = json.dumps(data, indent=2).encode("utf-8")
+        def clean_floats(o):
+            if isinstance(o, float):
+                if math.isinf(o) or math.isnan(o):
+                    return None
+                return o
+            elif isinstance(o, dict):
+                return {k: clean_floats(v) for k, v in o.items()}
+            elif isinstance(o, list):
+                return [clean_floats(v) for v in o]
+            return o
+
+        clean_data = clean_floats(data)
+        body = json.dumps(clean_data, indent=2).encode("utf-8")
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
