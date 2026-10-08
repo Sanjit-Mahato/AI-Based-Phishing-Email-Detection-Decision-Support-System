@@ -17,7 +17,7 @@
         <div class="logo-icon">🛡️</div>
         <div>
           <div class="logo-text-title">Phish<span>Radar</span></div>
-          <div class="logo-tag">Automated Threat Intelligence & Decision Support</div>
+          <div class="logo-tag">Threat Intelligence & Decision Support</div>
         </div>
       </div>
       <div class="nav-status">
@@ -35,7 +35,7 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="pulse-dot"></span>
-          Enterprise Threat Intelligence & Decision Support
+          Enterprise Threat Intelligence
         </div>
         <h1 class="hero-title">Automated Phishing Threat Detection & Fleet Audit</h1>
         <p class="hero-desc">
@@ -44,10 +44,10 @@
         </p>
         <div class="hero-cta-group">
           <a href="#batch-csv-section" class="hero-cta-btn primary">
-            <span>📁</span> Bulk CSV Fleet Audit (Drag & Drop)
+            <span>📁</span> Bulk CSV Fleet Audit
           </a>
           <a href="#single-scanner-section" class="hero-cta-btn secondary">
-            <span>⚡</span> Single Email Scanner
+            <span>⚡</span> Live Email Scanner
           </a>
         </div>
       </div>
@@ -55,7 +55,7 @@
       <div class="hero-stats-grid">
         <div class="hero-stat-card">
           <div class="hero-stat-num"><span>🔍</span> 7 Core Vectors</div>
-          <div class="hero-stat-label">MIME spoofing, IP links, suspicious TLDs, urgency & payloads</div>
+          <div class="hero-stat-label">MIME spoofing, IP links, suspicious TLDs & urgency cues</div>
         </div>
         <div class="hero-stat-card">
           <div class="hero-stat-num"><span>⚡</span> &lt; 50ms</div>
@@ -63,11 +63,11 @@
         </div>
         <div class="hero-stat-card">
           <div class="hero-stat-num"><span>🧠</span> Explainable AI</div>
-          <div class="hero-stat-label">Horn-clause rule justification & evidence-backed proof trees</div>
+          <div class="hero-stat-label">Horn-clause rule justification & evidence-backed logic</div>
         </div>
         <div class="hero-stat-card">
           <div class="hero-stat-num"><span>📊</span> Fleet CSV Audit</div>
-          <div class="hero-stat-label">Analyze bulk email datasets with executive KPI reporting</div>
+          <div class="hero-stat-label">Batch email dataset processing with KPI reporting</div>
         </div>
       </div>
     </div>
@@ -84,9 +84,9 @@
         </h2>
         <span class="status-pill">ENTERPRISE BATCH ENGINE</span>
       </div>
-      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
-        Upload a CSV file containing an email list (supports Kaggle datasets, mail server exports, or raw text lists) 
-        to perform automated bulk threat detection, compute fleet risk scores, and generate an actionable security audit report.
+      <p class="card-desc">
+        Upload a CSV file containing an email dataset to perform automated fleet threat detection, 
+        compute risk indexes, and generate an executive security audit report.
       </p>
 
       <!-- Dropzone Area -->
@@ -99,36 +99,36 @@
 
       <!-- Controls Row -->
       <div class="batch-controls-row">
-        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <div class="batch-controls-left">
           <button type="button" class="btn-secondary" id="btn-load-sample-csv">
             <span>📄</span> Load Sample CSV (15 Emails)
           </button>
-          <span style="font-size: 13px; color: var(--text-muted);" id="csv-selected-status">No file selected</span>
+          <span class="csv-status-label" id="csv-selected-status">No file selected</span>
         </div>
 
-        <div style="display: flex; gap: 10px; align-items: center;">
-          <label style="font-size: 12px; font-weight: 600; color: var(--text-muted);" for="batch-max-rows">Max Rows:</label>
-          <select id="batch-max-rows" class="form-select" style="padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); font-size: 13px;">
+        <div class="batch-controls-right">
+          <label class="batch-rows-label" for="batch-max-rows">Max Rows:</label>
+          <select id="batch-max-rows" class="batch-select">
             <option value="50">50 Rows</option>
             <option value="100">100 Rows</option>
             <option value="250" selected>250 Rows</option>
             <option value="500">500 Rows</option>
             <option value="1000">1,000 Rows</option>
           </select>
-          <button type="button" class="btn-analyze" id="btn-run-batch" style="margin-top: 0; width: auto; padding: 10px 24px;">
+          <button type="button" class="btn-analyze btn-batch-run" id="btn-run-batch">
             <span>⚡</span> Analyze Entire CSV
           </button>
         </div>
       </div>
 
       <!-- Dynamic Batch Audit Report Output -->
-      <div id="batch-report-area" style="display: none; margin-top: 24px; border-top: 1px solid var(--border-subtle); padding-top: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div id="batch-report-area" class="batch-report-section" style="display: none;">
+        <div class="batch-report-header">
           <div>
-            <h3 style="font-size: 17px; font-weight: 800; color: var(--text-dark);">
+            <h3 class="batch-report-title">
               🛡️ Batch Threat Intelligence Audit Report
             </h3>
-            <span style="font-size: 12px; color: var(--text-muted);" id="batch-timestamp">Generated just now</span>
+            <span class="batch-report-meta" id="batch-timestamp">Generated just now</span>
           </div>
           <button type="button" class="btn-export" id="btn-export-csv-report">
             <span>📥</span> Export Analyzed Report (CSV)
@@ -140,35 +140,33 @@
           <div class="batch-kpi-card">
             <span class="batch-kpi-label">Total Scanned</span>
             <span class="batch-kpi-val" id="kpi-total">0</span>
-            <span class="batch-kpi-sub">Email records parsed</span>
+            <span class="batch-kpi-sub">Email records</span>
           </div>
-          <div class="batch-kpi-card" style="border-left: 4px solid var(--danger-red); background: var(--danger-light);">
+          <div class="batch-kpi-card" style="border-left: 3px solid var(--danger-red); background: var(--danger-light);">
             <span class="batch-kpi-label" style="color: var(--danger-red);">Phishing Detected</span>
             <span class="batch-kpi-val" id="kpi-phishing" style="color: var(--danger-red);">0</span>
             <span class="batch-kpi-sub" id="kpi-phishing-pct" style="color: var(--danger-red);">0.0% of batch</span>
           </div>
-          <div class="batch-kpi-card" style="border-left: 4px solid var(--warning-amber); background: var(--warning-light);">
+          <div class="batch-kpi-card" style="border-left: 3px solid var(--warning-amber); background: var(--warning-light);">
             <span class="batch-kpi-label" style="color: var(--warning-amber);">Suspicious Emails</span>
             <span class="batch-kpi-val" id="kpi-suspicious" style="color: var(--warning-amber);">0</span>
             <span class="batch-kpi-sub" id="kpi-suspicious-pct" style="color: var(--warning-amber);">0.0% of batch</span>
           </div>
-          <div class="batch-kpi-card" style="border-left: 4px solid var(--success-green); background: var(--success-light);">
+          <div class="batch-kpi-card" style="border-left: 3px solid var(--success-green); background: var(--success-light);">
             <span class="batch-kpi-label" style="color: var(--success-green);">Legitimate / Safe</span>
             <span class="batch-kpi-val" id="kpi-safe" style="color: var(--success-green);">0</span>
             <span class="batch-kpi-sub" id="kpi-safe-pct" style="color: var(--success-green);">0.0% of batch</span>
           </div>
           <div class="batch-kpi-card">
-            <span class="batch-kpi-label">Average Risk Index</span>
+            <span class="batch-kpi-label">Avg Risk Score</span>
             <span class="batch-kpi-val" id="kpi-avg-risk" style="color: var(--blue-primary);">0.0</span>
-            <span class="batch-kpi-sub">Composite score (0-100)</span>
+            <span class="batch-kpi-sub">0-100 composite</span>
           </div>
         </div>
 
         <!-- Threat Vector Prevalence Breakdown -->
-        <div style="margin-top: 18px;">
-          <h4 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px;">
-            Observed Threat Vector Prevalence:
-          </h4>
+        <div>
+          <div class="prevalence-title">Observed Threat Vector Prevalence:</div>
           <div class="prevalence-grid" id="batch-prevalence-container">
             <!-- Dynamically populated -->
           </div>
@@ -176,27 +174,27 @@
 
         <!-- Filter Tabs Bar -->
         <div class="filter-tabs-bar">
-          <span style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 6px;">Filter Results:</span>
+          <span class="filter-tab-label">Filter:</span>
           <button type="button" class="filter-tab active" data-filter="ALL" id="filter-all">All Emails (<span id="count-all">0</span>)</button>
-          <button type="button" class="filter-tab" data-filter="Phishing" id="filter-phishing" style="color: var(--danger-red);">Phishing Only (<span id="count-phishing">0</span>)</button>
-          <button type="button" class="filter-tab" data-filter="Suspicious" id="filter-suspicious" style="color: var(--warning-amber);">Suspicious Only (<span id="count-suspicious">0</span>)</button>
-          <button type="button" class="filter-tab" data-filter="Safe" id="filter-safe" style="color: var(--success-green);">Clean Only (<span id="count-safe">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="Phishing" id="filter-phishing" style="color: var(--danger-red);">Phishing (<span id="count-phishing">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="Suspicious" id="filter-suspicious" style="color: var(--warning-amber);">Suspicious (<span id="count-suspicious">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="Safe" id="filter-safe" style="color: var(--success-green);">Clean (<span id="count-safe">0</span>)</button>
         </div>
 
         <!-- Results Table -->
-        <div style="overflow-x: auto; max-height: 460px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+        <div class="table-responsive-wrapper">
           <table class="enterprise-table" id="batch-results-table">
             <thead>
               <tr>
-                <th style="width: 50px;">#</th>
+                <th style="width: 45px;">#</th>
                 <th style="width: 140px;">Sender</th>
-                <th style="width: 180px;">Subject</th>
+                <th style="width: 170px;">Subject</th>
                 <th>Email Snippet</th>
-                <th style="width: 110px;">Verdict</th>
-                <th style="width: 80px;">Risk</th>
-                <th style="width: 160px;">Triggered Indicators</th>
-                <th style="width: 160px;">Security Action</th>
-                <th style="width: 85px; text-align: center;">Email</th>
+                <th style="width: 100px;">Verdict</th>
+                <th style="width: 70px;">Risk</th>
+                <th style="width: 150px;">Triggered Indicators</th>
+                <th style="width: 150px;">Security Action</th>
+                <th style="width: 75px; text-align: center;">View</th>
               </tr>
             </thead>
             <tbody>
@@ -233,7 +231,7 @@
             placeholder="Paste raw email with headers (From:, Reply-To:, Subject:) and message body here..."
           ></textarea>
 
-          <button type="submit" class="btn-analyze" id="btn-scan">
+          <button type="submit" class="btn-analyze btn-scan-full" id="btn-scan">
             <span>⚡</span> Analyze Threat Now
           </button>
         </form>
@@ -271,7 +269,7 @@
 
         <!-- Actionable Mitigation Advisory -->
         <div>
-          <div class="presets-label" style="margin-bottom: 10px;">Security Recommendations:</div>
+          <div class="presets-label" style="margin-bottom: 8px;">Security Recommendations:</div>
           <div class="recommendations-list" id="recommendations-container">
             <!-- Dynamically populated -->
           </div>
@@ -312,13 +310,13 @@
           
           <div class="modal-indicators-list" id="modal-email-flags"></div>
 
-          <div id="modal-urls-box" style="display: none; margin-top: 12px;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Detected Embedded Links:</div>
+          <div id="modal-urls-box" style="display: none; margin-top: 10px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px;">Detected Embedded Links:</div>
             <div id="modal-urls-list" class="modal-pills-list"></div>
           </div>
 
-          <div id="modal-attachments-box" style="display: none; margin-top: 10px;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Detected Attachments:</div>
+          <div id="modal-attachments-box" style="display: none; margin-top: 8px;">
+            <div style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 3px;">Detected Attachments:</div>
             <div id="modal-attachments-list" class="modal-pills-list"></div>
           </div>
         </div>
@@ -339,11 +337,11 @@
 
       <div class="modal-footer">
         <div class="modal-footer-rec">
-          <span style="font-size: 12px; color: var(--text-muted); display: block;">Recommended Action:</span>
-          <strong id="modal-email-action" style="color: var(--text-dark); font-size: 13px;">Quarantine / Delete Immediately</strong>
+          <span style="font-size: 11px; color: var(--text-muted); display: block;">Recommended Action:</span>
+          <strong id="modal-email-action" style="color: var(--text-title); font-size: 12.5px;">Quarantine / Delete Immediately</strong>
         </div>
-        <div style="display: flex; gap: 10px;">
-          <button type="button" class="btn-secondary" id="btn-load-in-scanner" style="padding: 9px 16px; font-size: 12px;">
+        <div class="modal-footer-actions">
+          <button type="button" class="btn-secondary" id="btn-load-in-scanner" style="padding: 7px 12px; font-size: 12px;">
             <span>⚡</span> Test in Live Scanner
           </button>
           <button type="button" class="btn-primary" id="btn-modal-done">Close</button>
