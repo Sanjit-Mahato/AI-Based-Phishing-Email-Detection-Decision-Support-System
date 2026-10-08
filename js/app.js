@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadPresets();
   setupScannerForm();
   loadBenchmarkData();
+  setupBatchCSVScanner();
 });
 
 // Load Presets
@@ -262,3 +263,307 @@ function showToast(msg) {
     t.remove();
   }, 3500);
 }
+
+// ==========================================================================
+// Batch CSV Upload & Threat Intelligence Audit Controller
+// ==========================================================================
+let currentCsvContent = "";
+let currentBatchReportData = null;
+let currentBatchFilter = "ALL";
+
+function setupBatchCSVScanner() {
+  const dropzone = document.getElementById("csv-dropzone");
+  const fileInput = document.getElementById("csv-file-input");
+  const loadSampleBtn = document.getElementById("btn-load-sample-csv");
+  const runBatchBtn = document.getElementById("btn-run-batch");
+  const exportBtn = document.getElementById("btn-export-csv-report");
+  const statusElem = document.getElementById("csv-selected-status");
+  const dropLabel = document.getElementById("dropzone-label");
+  const dropSub = document.getElementById("dropzone-sublabel");
+
+  if (!dropzone || !fileInput) return;
+
+  // 1. File Input Change
+  fileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) handleFileSelected(file);
+  });
+
+  // 2. Drag & Drop events
+  dropzone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropzone.classList.add("dragover");
+  });
+
+  dropzone.addEventListener("dragleave", () => {
+    dropzone.classList.remove("dragover");
+  });
+
+  dropzone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropzone.classList.remove("dragover");
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0];
+      handleFileSelected(file);
+    }
+  });
+
+  function handleFileSelected(file) {
+    if (!file.name.toLowerCase().endsWith(".csv")) {
+      showToast("Please upload a valid .csv file.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      currentCsvContent = event.target.result;
+      const sizeKb = (file.size / 1024).toFixed(1);
+      dropLabel.textContent = `Selected: ${file.name} (${sizeKb} KB)`;
+      dropSub.textContent = "Ready to analyze. Click 'Analyze Entire CSV' below.";
+      statusElem.textContent = `${file.name} loaded`;
+      showToast(`Loaded ${file.name} successfully.`);
+    };
+    reader.onerror = () => {
+      showToast("Failed to read the selected CSV file.");
+    };
+    reader.readAsText(file);
+  }
+
+  // 3. Load Sample CSV Button
+  if (loadSampleBtn) {
+    loadSampleBtn.addEventListener("click", async () => {
+      try {
+        loadSampleBtn.disabled = true;
+        loadSampleBtn.innerHTML = `<span>⏳</span> Fetching Sample...`;
+        const res = await fetch("/api/sample-csv");
+        const data = await res.json();
+
+        if (data.csv_text) {
+          currentCsvContent = data.csv_text;
+          dropLabel.textContent = `Loaded: sample_email_list.csv (15 Emails)`;
+          dropSub.textContent = "Multi-threat benchmark batch loaded. Click 'Analyze Entire CSV'.";
+          statusElem.textContent = "sample_email_list.csv active";
+          showToast("Loaded sample email list CSV.");
+        } else {
+          showToast("Could not load sample CSV.");
+        }
+      } catch (err) {
+        console.error("Error loading sample CSV:", err);
+        showToast("Error loading sample CSV file.");
+      } finally {
+        loadSampleBtn.disabled = false;
+        loadSampleBtn.innerHTML = `<span>📄</span> Load Sample CSV (15 Emails)`;
+      }
+    });
+  }
+
+  // 4. Run Batch Analysis Button
+  if (runBatchBtn) {
+    runBatchBtn.addEventListener("click", async () => {
+      if (!currentCsvContent) {
+        showToast("Please select or load a CSV file first.");
+        return;
+      }
+
+      const maxRows = parseInt(document.getElementById("batch-max-rows")?.value || "250", 10);
+      runBatchBtn.disabled = true;
+      runBatchBtn.innerHTML = `<span>⏳</span> Analyzing Batch...`;
+
+      const startTime = performance.now();
+
+      try {
+        const res = await fetch("/api/batch-analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ csv_content: currentCsvContent, max_rows: maxRows })
+        });
+
+        const report = await res.json();
+        const latency = Math.round(performance.now() - startTime);
+
+        if (report.error) {
+          showToast(report.error);
+          return;
+        }
+
+        currentBatchReportData = report;
+        renderBatchReport(report);
+        showToast(`Analyzed ${report.summary.total_scanned} emails in ${latency}ms.`);
+      } catch (err) {
+        console.error("Batch analyze error:", err);
+        showToast("Failed to run batch analysis.");
+      } finally {
+        runBatchBtn.disabled = false;
+        runBatchBtn.innerHTML = `<span>⚡</span> Analyze Entire CSV`;
+      }
+    });
+  }
+
+  // 5. Filter Tabs setup
+  const filterTabs = document.querySelectorAll(".filter-tab");
+  filterTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      filterTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentBatchFilter = tab.dataset.filter;
+      if (currentBatchReportData) {
+        renderBatchTableRows(currentBatchReportData.results, currentBatchFilter);
+      }
+    });
+  });
+
+  // 6. Export CSV Button
+  if (exportBtn) {
+    exportBtn.addEventListener("click", exportBatchCsvReport);
+  }
+}
+
+// Render the Entire Batch Report Area
+function renderBatchReport(report) {
+  const reportArea = document.getElementById("batch-report-area");
+  if (!reportArea) return;
+
+  reportArea.style.display = "block";
+  document.getElementById("batch-timestamp").textContent = `Generated: ${new Date().toLocaleTimeString()} (Scanned ${report.summary.total_scanned} records)`;
+
+  // Summary KPIs
+  const s = report.summary;
+  document.getElementById("kpi-total").textContent = s.total_scanned;
+  document.getElementById("kpi-phishing").textContent = s.phishing_count;
+  document.getElementById("kpi-phishing-pct").textContent = `${s.phishing_percentage}% of batch`;
+  document.getElementById("kpi-suspicious").textContent = s.suspicious_count;
+  document.getElementById("kpi-suspicious-pct").textContent = `${s.suspicious_percentage}% of batch`;
+  document.getElementById("kpi-safe").textContent = s.safe_count;
+  document.getElementById("kpi-safe-pct").textContent = `${s.safe_percentage}% of batch`;
+  document.getElementById("kpi-avg-risk").textContent = `${s.average_risk_score} / 100`;
+
+  // Filter button counts
+  document.getElementById("count-all").textContent = s.total_scanned;
+  document.getElementById("count-phishing").textContent = s.phishing_count;
+  document.getElementById("count-suspicious").textContent = s.suspicious_count;
+  document.getElementById("count-safe").textContent = s.safe_count;
+
+  // Prevalence Bars
+  const prevContainer = document.getElementById("batch-prevalence-container");
+  if (prevContainer && report.indicator_prevalence) {
+    const prev = report.indicator_prevalence;
+    prevContainer.innerHTML = Object.keys(INDICATOR_DETAILS).map(key => {
+      const meta = INDICATOR_DETAILS[key];
+      const stats = prev[key] || { count: 0, percentage: 0 };
+      const barColor = stats.percentage > 30 ? "var(--danger-red)" : (stats.percentage > 10 ? "var(--warning-amber)" : "var(--blue-primary)");
+
+      return `
+        <div class="prev-bar-box">
+          <div class="prev-bar-header">
+            <span>${meta.title}</span>
+            <span style="font-family: var(--font-mono); color: ${barColor};">${stats.percentage}% (${stats.count})</span>
+          </div>
+          <div class="prev-bar-track">
+            <div class="prev-bar-fill" style="width: ${stats.percentage}%; background: ${barColor};"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Render Table
+  renderBatchTableRows(report.results, currentBatchFilter);
+  reportArea.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+// Render Filtered Table Rows
+function renderBatchTableRows(items, filter) {
+  const tbody = document.querySelector("#batch-results-table tbody");
+  if (!tbody || !items) return;
+
+  const filtered = items.filter(item => {
+    if (filter === "ALL") return true;
+    return item.verdict.toLowerCase() === filter.toLowerCase();
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 24px;">No emails match the selected filter.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(row => {
+    const verdictClass = row.verdict === "Phishing" ? "badge-flagged" : (row.verdict === "Suspicious" ? "badge-flagged" : "badge-clean");
+    const riskColor = row.risk_score >= 60 ? "var(--danger-red)" : (row.risk_score >= 30 ? "var(--warning-amber)" : "var(--success-green)");
+
+    const flagsBadges = row.active_flags.length > 0 
+      ? row.active_flags.map(f => `<span class="badge-flagged" style="font-size: 10px; padding: 2px 5px; margin-right: 4px; display: inline-block; margin-bottom: 2px;">${f.replace(/_/g, ' ')}</span>`).join('')
+      : `<span style="color: var(--text-muted); font-size: 11px;">None</span>`;
+
+    return `
+      <tr>
+        <td style="font-family: var(--font-mono); color: var(--text-muted); font-weight: 600;">#${row.row_id}</td>
+        <td style="font-weight: 600; font-size: 12px; color: var(--text-dark);">${escapeHtml(row.sender)}</td>
+        <td style="font-weight: 600; font-size: 12px; color: var(--blue-primary);">${escapeHtml(row.subject)}</td>
+        <td style="font-size: 11px; color: var(--text-muted); max-width: 240px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(row.snippet)}">
+          ${escapeHtml(row.snippet)}
+        </td>
+        <td><span class="${verdictClass}">${row.verdict}</span></td>
+        <td style="font-family: var(--font-mono); font-weight: 700; color: ${riskColor};">${row.risk_score}</td>
+        <td>${flagsBadges}</td>
+        <td style="font-size: 11px; color: var(--text-dark); font-weight: 600;">${escapeHtml(row.action)}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// Client-Side CSV Report Generator & Downloader
+function exportBatchCsvReport() {
+  if (!currentBatchReportData || !currentBatchReportData.results) {
+    showToast("No analyzed report available to export.");
+    return;
+  }
+
+  const items = currentBatchReportData.results;
+  const headers = [
+    "Row ID", "Sender", "Subject", "Email Snippet", "Verdict", 
+    "Risk Score", "Confidence %", "Triggered Flags Count", 
+    "Triggered Indicators", "Decision Reason", "Recommended Action"
+  ];
+
+  const csvRows = [headers.join(",")];
+
+  items.forEach(row => {
+    const escapeCsv = (val) => `"${String(val || '').replace(/"/g, '""')}"`;
+    csvRows.push([
+      row.row_id,
+      escapeCsv(row.sender),
+      escapeCsv(row.subject),
+      escapeCsv(row.snippet),
+      escapeCsv(row.verdict),
+      row.risk_score,
+      row.confidence,
+      row.flags_count,
+      escapeCsv(row.active_flags.join("; ")),
+      escapeCsv(row.primary_reason),
+      escapeCsv(row.action)
+    ].join(","));
+  });
+
+  const blob = new Blob([csvRows.join("\n")], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `phishing_threat_audit_report_${Date.now()}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast("Audit report CSV downloaded!");
+}
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+

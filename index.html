@@ -115,6 +115,136 @@
       </section>
     </div>
 
+    <!-- Middle Row: Bulk Email Intelligence & CSV Audit Scanner -->
+    <section class="card" id="batch-csv-section">
+      <div class="card-title-bar">
+        <h2 class="card-heading">
+          <span>📁</span> Bulk Email CSV Threat Intelligence & Audit Scanner
+        </h2>
+        <span class="status-pill">ENTERPRISE BATCH ENGINE</span>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
+        Upload a CSV file containing an email list (supports Kaggle datasets, mail server exports, or raw text lists) 
+        to perform automated bulk threat detection, compute fleet risk scores, and generate an actionable security audit report.
+      </p>
+
+      <!-- Dropzone Area -->
+      <div class="dropzone-box" id="csv-dropzone">
+        <input type="file" id="csv-file-input" class="file-input-hidden" accept=".csv,text/csv" />
+        <div class="dropzone-icon">☁️</div>
+        <div class="dropzone-text-main" id="dropzone-label">Click or Drag & Drop Email List CSV File Here</div>
+        <div class="dropzone-text-sub" id="dropzone-sublabel">Supported columns: "Email Text", "Body", "Content", "Sender", "Subject"</div>
+      </div>
+
+      <!-- Controls Row -->
+      <div class="batch-controls-row">
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button type="button" class="btn-secondary" id="btn-load-sample-csv">
+            <span>📄</span> Load Sample CSV (15 Emails)
+          </button>
+          <span style="font-size: 13px; color: var(--text-muted);" id="csv-selected-status">No file selected</span>
+        </div>
+
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <label style="font-size: 12px; font-weight: 600; color: var(--text-muted);" for="batch-max-rows">Max Rows:</label>
+          <select id="batch-max-rows" class="form-select" style="padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); font-size: 13px;">
+            <option value="50">50 Rows</option>
+            <option value="100">100 Rows</option>
+            <option value="250" selected>250 Rows</option>
+            <option value="500">500 Rows</option>
+            <option value="1000">1,000 Rows</option>
+          </select>
+          <button type="button" class="btn-analyze" id="btn-run-batch" style="margin-top: 0; width: auto; padding: 10px 24px;">
+            <span>⚡</span> Analyze Entire CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamic Batch Audit Report Output -->
+      <div id="batch-report-area" style="display: none; margin-top: 24px; border-top: 1px solid var(--border-subtle); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 17px; font-weight: 800; color: var(--text-dark);">
+              🛡️ Batch Threat Intelligence Audit Report
+            </h3>
+            <span style="font-size: 12px; color: var(--text-muted);" id="batch-timestamp">Generated just now</span>
+          </div>
+          <button type="button" class="btn-export" id="btn-export-csv-report">
+            <span>📥</span> Export Analyzed Report (CSV)
+          </button>
+        </div>
+
+        <!-- 5 KPI Summary Cards -->
+        <div class="batch-kpi-grid">
+          <div class="batch-kpi-card">
+            <span class="batch-kpi-label">Total Scanned</span>
+            <span class="batch-kpi-val" id="kpi-total">0</span>
+            <span class="batch-kpi-sub">Email records parsed</span>
+          </div>
+          <div class="batch-kpi-card" style="border-left: 4px solid var(--danger-red); background: var(--danger-light);">
+            <span class="batch-kpi-label" style="color: var(--danger-red);">Phishing Detected</span>
+            <span class="batch-kpi-val" id="kpi-phishing" style="color: var(--danger-red);">0</span>
+            <span class="batch-kpi-sub" id="kpi-phishing-pct" style="color: var(--danger-red);">0.0% of batch</span>
+          </div>
+          <div class="batch-kpi-card" style="border-left: 4px solid var(--warning-amber); background: var(--warning-light);">
+            <span class="batch-kpi-label" style="color: var(--warning-amber);">Suspicious Emails</span>
+            <span class="batch-kpi-val" id="kpi-suspicious" style="color: var(--warning-amber);">0</span>
+            <span class="batch-kpi-sub" id="kpi-suspicious-pct" style="color: var(--warning-amber);">0.0% of batch</span>
+          </div>
+          <div class="batch-kpi-card" style="border-left: 4px solid var(--success-green); background: var(--success-light);">
+            <span class="batch-kpi-label" style="color: var(--success-green);">Legitimate / Safe</span>
+            <span class="batch-kpi-val" id="kpi-safe" style="color: var(--success-green);">0</span>
+            <span class="batch-kpi-sub" id="kpi-safe-pct" style="color: var(--success-green);">0.0% of batch</span>
+          </div>
+          <div class="batch-kpi-card">
+            <span class="batch-kpi-label">Average Risk Index</span>
+            <span class="batch-kpi-val" id="kpi-avg-risk" style="color: var(--blue-primary);">0.0</span>
+            <span class="batch-kpi-sub">Composite score (0-100)</span>
+          </div>
+        </div>
+
+        <!-- Threat Vector Prevalence Breakdown -->
+        <div style="margin-top: 18px;">
+          <h4 style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px;">
+            Observed Threat Vector Prevalence:
+          </h4>
+          <div class="prevalence-grid" id="batch-prevalence-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Filter Tabs Bar -->
+        <div class="filter-tabs-bar">
+          <span style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 6px;">Filter Results:</span>
+          <button type="button" class="filter-tab active" data-filter="ALL" id="filter-all">All Emails (<span id="count-all">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="Phishing" id="filter-phishing" style="color: var(--danger-red);">Phishing Only (<span id="count-phishing">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="Suspicious" id="filter-suspicious" style="color: var(--warning-amber);">Suspicious Only (<span id="count-suspicious">0</span>)</button>
+          <button type="button" class="filter-tab" data-filter="Safe" id="filter-safe" style="color: var(--success-green);">Clean Only (<span id="count-safe">0</span>)</button>
+        </div>
+
+        <!-- Results Table -->
+        <div style="overflow-x: auto; max-height: 460px; overflow-y: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-md);">
+          <table class="enterprise-table" id="batch-results-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">#</th>
+                <th style="width: 140px;">Sender</th>
+                <th style="width: 180px;">Subject</th>
+                <th>Email Snippet</th>
+                <th style="width: 110px;">Verdict</th>
+                <th style="width: 80px;">Risk</th>
+                <th style="width: 160px;">Triggered Indicators</th>
+                <th style="width: 180px;">Security Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <!-- Middle Row: 7 Threat Indicators & Evidence Grid -->
     <section class="card">
       <div class="card-title-bar">
