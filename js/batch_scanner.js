@@ -112,11 +112,22 @@ function setupBatchCSVScanner() {
       try {
         loadSampleBtn.disabled = true;
         loadSampleBtn.innerHTML = `<span class="btn-spinner"></span> Loading Sample...`;
-        const res = await fetch("/api/sample-csv");
-        const data = await res.json();
 
-        if (data.csv_text) {
-          currentCsvContent = data.csv_text;
+        let sampleCsvText = "";
+        try {
+          const res = await fetch("/api/sample-csv");
+          const data = await res.json();
+          if (data && data.csv_text) {
+            sampleCsvText = data.csv_text;
+          }
+        } catch (_) {}
+
+        if (!sampleCsvText && window.PhishRadarEngine && window.PhishRadarEngine.sampleCsv) {
+          sampleCsvText = window.PhishRadarEngine.sampleCsv;
+        }
+
+        if (sampleCsvText) {
+          currentCsvContent = sampleCsvText;
           document.getElementById("dropzone-label").textContent = "Loaded: sample_email_list.csv (15 Emails)";
           document.getElementById("dropzone-sublabel").textContent = "Sample list active. Scanning...";
           document.getElementById("csv-selected-status").textContent = "sample_email_list.csv ready";
@@ -189,8 +200,13 @@ function setupBatchCSVScanner() {
       currentBatchReportData = report;
       currentBatchPage = 1;
       renderBatchReport(report);
-      if (dropSub) dropSub.textContent = `Completed scan of ${report.summary.total_scanned} emails in ${latency}ms.`;
-      showToast(`Checked ${report.summary.total_scanned} emails in ${latency}ms.`);
+
+      const totalCount = (report.summary && report.summary.total_scanned !== undefined)
+        ? report.summary.total_scanned
+        : (report.results ? report.results.length : (report.rows ? report.rows.length : 0));
+
+      if (dropSub) dropSub.textContent = `Completed scan of ${totalCount} emails in ${latency}ms.`;
+      showToast(`Checked ${totalCount} emails in ${latency}ms.`);
     } catch (err) {
       console.error("Batch analyze error:", err);
       showToast("Failed to run email scan. Check connection.");
@@ -282,27 +298,41 @@ function renderBatchReport(report) {
 
   reportArea.style.display = "block";
 
-  // Summary KPIs
+  const allItems = report.results || report.rows || [];
+
+  // Summary KPIs with safe fallbacks
   const s = report.summary || {};
-  document.getElementById("kpi-total").textContent = s.total_scanned || 0;
-  document.getElementById("kpi-phishing").textContent = s.phishing_count || 0;
-  document.getElementById("kpi-phishing-pct").textContent = `${s.phishing_percentage || 0}% of batch`;
-  document.getElementById("kpi-suspicious").textContent = s.suspicious_count || 0;
-  document.getElementById("kpi-suspicious-pct").textContent = `${s.suspicious_percentage || 0}% of batch`;
-  document.getElementById("kpi-safe").textContent = s.safe_count || 0;
-  document.getElementById("kpi-safe-pct").textContent = `${s.safe_percentage || 0}% of batch`;
-  document.getElementById("kpi-avg-risk").textContent = `${s.average_risk_score || 0} / 100`;
+  const total = (s.total_scanned !== undefined && s.total_scanned !== 0) ? s.total_scanned : allItems.length;
+  const phish = (s.phishing_count !== undefined) ? s.phishing_count : allItems.filter(r => r.verdict === 'Phishing').length;
+  const susp = (s.suspicious_count !== undefined) ? s.suspicious_count : allItems.filter(r => r.verdict === 'Suspicious').length;
+  const safe = (s.safe_count !== undefined) ? s.safe_count : allItems.filter(r => r.verdict === 'Safe').length;
+
+  const phishPct = total > 0 ? (s.phishing_percentage !== undefined ? s.phishing_percentage : Math.round((phish / total) * 100)) : 0;
+  const suspPct = total > 0 ? (s.suspicious_percentage !== undefined ? s.suspicious_percentage : Math.round((susp / total) * 100)) : 0;
+  const safePct = total > 0 ? (s.safe_percentage !== undefined ? s.safe_percentage : Math.round((safe / total) * 100)) : 0;
+  const avgRisk = s.average_risk_score !== undefined
+    ? s.average_risk_score
+    : (total > 0 ? Math.round(allItems.reduce((a, b) => a + (b.risk_score || 0), 0) / total) : 0);
+
+  document.getElementById("kpi-total").textContent = total;
+  document.getElementById("kpi-phishing").textContent = phish;
+  document.getElementById("kpi-phishing-pct").textContent = `${phishPct}% of batch`;
+  document.getElementById("kpi-suspicious").textContent = susp;
+  document.getElementById("kpi-suspicious-pct").textContent = `${suspPct}% of batch`;
+  document.getElementById("kpi-safe").textContent = safe;
+  document.getElementById("kpi-safe-pct").textContent = `${safePct}% of batch`;
+  document.getElementById("kpi-avg-risk").textContent = `${avgRisk} / 100`;
 
   // Filter button counts
-  document.getElementById("count-all").textContent = s.total_scanned || 0;
-  document.getElementById("count-phishing").textContent = s.phishing_count || 0;
-  document.getElementById("count-suspicious").textContent = s.suspicious_count || 0;
-  document.getElementById("count-safe").textContent = s.safe_count || 0;
+  document.getElementById("count-all").textContent = total;
+  document.getElementById("count-phishing").textContent = phish;
+  document.getElementById("count-suspicious").textContent = susp;
+  document.getElementById("count-safe").textContent = safe;
 
   // Prevalence Bars
   const prevContainer = document.getElementById("batch-prevalence-container");
-  if (prevContainer && report.indicator_prevalence) {
-    const prev = report.indicator_prevalence;
+  if (prevContainer) {
+    const prev = report.indicator_prevalence || {};
     const metaDict = (typeof CORE_INDICATOR_METADATA !== "undefined") ? CORE_INDICATOR_METADATA : {
       reply_to_mismatch: { title: "Fake Sender Address" },
       ip_in_url: { title: "IP Number Link" },
@@ -314,17 +344,21 @@ function renderBatchReport(report) {
     };
     prevContainer.innerHTML = Object.keys(metaDict).map(key => {
       const meta = metaDict[key] || { title: key.replace(/_/g, ' ') };
-      const stats = prev[key] || { count: 0, percentage: 0 };
-      const barColor = stats.percentage > 35 ? "var(--threat-phish)" : (stats.percentage > 15 ? "var(--threat-suspicious)" : "var(--accent-cyan)");
+      const rawStat = prev[key];
+      const count = typeof rawStat === "object" && rawStat !== null ? (rawStat.count || 0) : (Number(rawStat) || 0);
+      const percentage = typeof rawStat === "object" && rawStat !== null && rawStat.percentage !== undefined
+        ? rawStat.percentage
+        : (total > 0 ? Math.round((count / total) * 100) : 0);
+      const barColor = percentage > 35 ? "var(--threat-phish)" : (percentage > 15 ? "var(--threat-suspicious)" : "var(--accent-cyan)");
 
       return `
         <div class="prev-bar-box">
           <div class="prev-bar-header">
             <span>${escapeHtmlBatch(meta.title)}</span>
-            <span style="font-family: var(--font-mono); color: ${barColor};">${stats.percentage}% (${stats.count})</span>
+            <span style="font-family: var(--font-mono); color: ${barColor};">${percentage}% (${count})</span>
           </div>
           <div class="prev-bar-track">
-            <div class="prev-bar-fill" style="width: ${stats.percentage}%; background: ${barColor};"></div>
+            <div class="prev-bar-fill" style="width: ${percentage}%; background: ${barColor};"></div>
           </div>
         </div>
       `;
@@ -337,9 +371,11 @@ function renderBatchReport(report) {
 
 // Render Filtered Table with Pagination
 function renderFilteredTable() {
-  if (!currentBatchReportData || !currentBatchReportData.results) return;
+  if (!currentBatchReportData) return;
 
-  const items = currentBatchReportData.results;
+  const items = currentBatchReportData.results || currentBatchReportData.rows || [];
+  if (!items || items.length === 0) return;
+
   const tbody = document.querySelector("#batch-results-table tbody");
   if (!tbody) return;
 
@@ -535,9 +571,10 @@ function setupEmailDetailModal() {
 }
 
 function openEmailDetailModal(rowId) {
-  if (!currentBatchReportData || !currentBatchReportData.results) return;
+  if (!currentBatchReportData) return;
 
-  const email = currentBatchReportData.results.find(r => r.row_id === rowId);
+  const items = currentBatchReportData.results || currentBatchReportData.rows || [];
+  const email = items.find(r => r.row_id === rowId);
   if (!email) return;
 
   activeModalEmail = email;
@@ -662,12 +699,16 @@ function openEmailDetailModal(rowId) {
 
 // Export Batch CSV Audit Report
 function exportBatchCsvReport() {
-  if (!currentBatchReportData || !currentBatchReportData.results) {
+  if (!currentBatchReportData) {
     showToast("No report data available to export.");
     return;
   }
 
-  const items = currentBatchReportData.results;
+  const items = currentBatchReportData.results || currentBatchReportData.rows || [];
+  if (!items || items.length === 0) {
+    showToast("No report data available to export.");
+    return;
+  }
   const headers = ["Row_ID", "Sender", "Reply_To", "Subject", "Verdict", "Risk_Score", "Triggered_Indicators", "Recommended_Action", "Deduction_Reason"];
 
   const csvRows = [headers.join(",")];
