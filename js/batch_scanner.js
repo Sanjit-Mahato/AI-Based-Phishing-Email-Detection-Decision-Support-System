@@ -64,8 +64,8 @@ function setupBatchCSVScanner() {
       return;
     }
 
-    // Limit read chunk to 30 MB (covers datasets up to 30MB entirely)
-    const MAX_READ_BYTES = 30 * 1024 * 1024;
+    // Limit read chunk to 60 MB (covers datasets up to 60MB entirely, including Phishing_Email.csv)
+    const MAX_READ_BYTES = 60 * 1024 * 1024;
     const isLarge = file.size > MAX_READ_BYTES;
     const blobToRead = isLarge ? file.slice(0, MAX_READ_BYTES) : file;
 
