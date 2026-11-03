@@ -85,8 +85,8 @@ class BackwardChainingEngine:
                 "proved_verdict": "Phishing",
                 "is_proved": True,
                 "proof_tree": phishing_proof.to_dict(),
-                "explanation": explanation_text,
-                "summary": f"Proved Phishing: {explanation_text}"
+                "explanation": f"phishing risk: {explanation_text}",
+                "summary": f"Phishing risk: {explanation_text}"
             }
 
         # 2. Try proving 'suspicious'
@@ -98,35 +98,49 @@ class BackwardChainingEngine:
                 "is_proved": True,
                 "proof_tree": suspicious_proof.to_dict(),
                 "explanation": explanation_text,
-                "summary": f"Proved Suspicious: {explanation_text}"
+                "summary": f"Warning: {explanation_text}"
             }
 
         return {
             "proved_verdict": "Safe",
             "is_proved": False,
             "proof_tree": None,
-            "explanation": "No phishing or suspicious Horn clauses were triggered by the email indicators.",
-            "summary": "Proved Safe: No risk indicators met threshold rules."
+            "explanation": "No scam signs or risk triggers found.",
+            "summary": "Safe: No risks or scam signs found."
         }
 
-    def _format_proof_text(self, node: ProofNode) -> str:
-        """
-        Formats node into readable explanation like:
-        'phishing by spoofed sender (reply-to mismatch) and bad link (suspicious TLD)'
-        """
+    def _collect_leaf_facts(self, node: ProofNode) -> List[str]:
+        """Extracts unique underlying facts that triggered the proof."""
         if node.is_fact:
-            return node.goal.replace('_', ' ')
-
-        if not node.children:
-            return node.goal
-
-        child_descriptions = []
+            return [node.goal]
+        leafs = []
         for child in node.children:
-            child_text = self._format_proof_text(child)
-            if not child.is_fact:
-                child_descriptions.append(f"{child.goal.replace('_', ' ')} ({child_text})")
-            else:
-                child_descriptions.append(child.goal.replace('_', ' '))
+            leafs.extend(self._collect_leaf_facts(child))
+        return list(dict.fromkeys(leafs))
 
-        joined_reasons = " and ".join(child_descriptions)
-        return f"{node.goal} by {joined_reasons}"
+    def _format_proof_text(self, node: ProofNode) -> str:
+        """Formats proof into simple, short, plain-English summary."""
+        fact_labels = {
+            "reply_to_mismatch": "fake sender address",
+            "ip_in_url": "unsafe numeric web link",
+            "suspicious_tld": "risky website ending",
+            "long_url": "suspiciously long link",
+            "no_https": "insecure link (no HTTPS)",
+            "executable_attachment": "dangerous file attached",
+            "urgency_words": "urgent pressure words",
+            "spoofed_sender": "fake sender",
+            "bad_link": "unsafe link",
+            "deceptive_link": "misleading link",
+            "dangerous_file": "dangerous file",
+        }
+
+        leafs = self._collect_leaf_facts(node)
+        readable = [fact_labels.get(f, f.replace('_', ' ')) for f in leafs]
+
+        if not readable:
+            return "risk patterns matched"
+        if len(readable) == 1:
+            return readable[0]
+        if len(readable) == 2:
+            return f"{readable[0]} and {readable[1]}"
+        return ", ".join(readable[:-1]) + f", and {readable[-1]}"

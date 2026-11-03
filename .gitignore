@@ -57,3 +57,16 @@ env/
 !models/.gitkeep
 !data/.gitkeep
 !data/sample_email_list.csv
+
+# Documents, PDFs and Presentations
+*.pdf
+*.docx
+*.pptx
+progress-report-pdf/
+
+# Temporary media, screenshots and logs
+*.png
+*.jpg
+*.jpeg
+*.log
+phishing_output.txt

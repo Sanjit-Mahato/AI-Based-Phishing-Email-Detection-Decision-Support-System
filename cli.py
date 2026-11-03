@@ -23,7 +23,7 @@ from phishing_ai import run_benchmark_and_evaluation
 
 PRESET_EMAILS = [
     {
-        "name": "1. High-Risk Banking Credential Harvester (Phishing)",
+        "name": "1. Bank Scam (Fake)",
         "text": (
             "From: Chase Security Alert <alerts@chase-bank-verify.xyz>\n"
             "Reply-To: security-drop@attacker-server.xyz\n"
@@ -39,7 +39,7 @@ PRESET_EMAILS = [
         )
     },
     {
-        "name": "2. Evasive Spear-Phishing / Executive Impersonation (Suspicious)",
+        "name": "2. Fake Boss Email (Suspicious)",
         "text": (
             "From: HR Department <hr@company-internal.net>\n"
             "Reply-To: external-hr-auditor@consulting-partners.com\n"
@@ -51,7 +51,7 @@ PRESET_EMAILS = [
         )
     },
     {
-        "name": "3. Legitimate University Project Notification (Safe)",
+        "name": "3. College Notice (Safe)",
         "text": (
             "From: Dr. Mohd Nazim <mnazim@niet.co.in>\n"
             "Reply-To: mnazim@niet.co.in\n"

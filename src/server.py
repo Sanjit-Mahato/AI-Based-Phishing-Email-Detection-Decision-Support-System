@@ -8,7 +8,9 @@ import os
 import sys
 import json
 import math
+import time
 import mimetypes
+from typing import Any, Dict, Optional
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from urllib.parse import urlparse, parse_qs
@@ -30,6 +32,9 @@ from data.kaggle_loader import KaggleDatasetLoader
 WEB_DIR = os.path.join(BASE_DIR, "web")
 
 
+MAX_PAYLOAD_BYTES = 100 * 1024 * 1024  # 100 MB limit to allow large batch email CSV datasets
+
+
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handles requests in separate threads for responsiveness."""
     daemon_threads = True
@@ -39,9 +44,12 @@ class AppRequestHandler(BaseHTTPRequestHandler):
     # Shared model and engine instances
     dss = None
     classifier = None
+    _start_time = time.time()
+    _cache: Dict[str, Any] = {}
 
     @classmethod
     def initialize_system(cls):
+        cls._start_time = time.time()
         model_path = os.path.join(BASE_DIR, "models", "trained_naive_bayes.json")
         if os.path.exists(model_path):
             cls.classifier = NaiveBayesClassifier.load_from_file(model_path)
@@ -57,12 +65,19 @@ class AppRequestHandler(BaseHTTPRequestHandler):
 
         cls.dss = DecisionSupportSystem(classifier=cls.classifier)
 
+    def _set_security_headers(self):
+        """Standard enterprise HTTP security headers."""
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("X-XSS-Protection", "1; mode=block")
+        self.send_header("Access-Control-Allow-Origin", "*")
+
     def do_OPTIONS(self):
         """Handle CORS pre-flight requests."""
         self.send_response(200)
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self._set_security_headers()
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
         self.end_headers()
 
     def do_HEAD(self):
@@ -84,9 +99,9 @@ class AppRequestHandler(BaseHTTPRequestHandler):
         clean_data = clean_floats(data)
         body = json.dumps(clean_data, indent=2).encode("utf-8")
         self.send_response(status_code)
-        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self._set_security_headers()
         self.end_headers()
         self.wfile.write(body)
 
@@ -94,14 +109,29 @@ class AppRequestHandler(BaseHTTPRequestHandler):
         url_parts = urlparse(self.path)
         path = url_parts.path
 
-        if path == "/api/presets":
+        if path == "/api/health":
+            uptime = round(time.time() - self._start_time, 2)
+            rules_count = len(KnowledgeBase.get_default_rules())
+            self.send_json({
+                "status": "healthy",
+                "uptime_seconds": uptime,
+                "model_loaded": self.classifier is not None,
+                "dss_initialized": self.dss is not None,
+                "rules_count": rules_count,
+                "version": "2.0.0-enterprise"
+            })
+            return
+
+        elif path == "/api/presets":
             from cli import PRESET_EMAILS
             self.send_json({"presets": PRESET_EMAILS})
             return
 
         elif path == "/api/rules":
-            rules = [r.to_dict() for r in KnowledgeBase.get_default_rules()]
-            self.send_json({"rules": rules})
+            if "rules" not in self._cache:
+                rules = [r.to_dict() for r in KnowledgeBase.get_default_rules()]
+                self._cache["rules"] = rules
+            self.send_json({"rules": self._cache["rules"]})
             return
 
         elif path == "/api/sample-csv":
@@ -115,6 +145,10 @@ class AppRequestHandler(BaseHTTPRequestHandler):
             return
 
         elif path == "/api/benchmark":
+            if "benchmark" in self._cache:
+                self.send_json(self._cache["benchmark"])
+                return
+
             train_emails, test_emails = generate_benchmark_emails()
             extractor = FeatureExtractor()
             for s in train_emails:
@@ -150,6 +184,7 @@ class AppRequestHandler(BaseHTTPRequestHandler):
                 ],
                 "cross_validation": cv_res
             }
+            self._cache["benchmark"] = data
             self.send_json(data)
             return
 
@@ -160,71 +195,98 @@ class AppRequestHandler(BaseHTTPRequestHandler):
         url_parts = urlparse(self.path)
         path = url_parts.path
 
-        content_length = int(self.headers.get("Content-Length", 0))
-        body = self.rfile.read(content_length)
+        try:
+            content_length = int(self.headers.get("Content-Length", 0))
+        except (ValueError, TypeError):
+            self.send_json({"error": "Invalid Content-Length header"}, 400)
+            return
+
+        if content_length > MAX_PAYLOAD_BYTES:
+            self.send_json({
+                "error": f"Payload too large. Maximum allowed size is {MAX_PAYLOAD_BYTES // (1024 * 1024)}MB."
+            }, 413)
+            return
 
         try:
-            req_data = json.loads(body.decode("utf-8")) if body else {}
-        except Exception:
-            req_data = {}
+            body = self.rfile.read(content_length) if content_length > 0 else b""
+            req_data = json.loads(body.decode("utf-8", errors="replace")) if body else {}
+        except UnicodeDecodeError:
+            self.send_json({"error": "Invalid encoding in request body"}, 400)
+            return
+        except json.JSONDecodeError as e:
+            self.send_json({"error": f"Malformed JSON: {str(e)}"}, 400)
+            return
 
-        if path == "/api/analyze":
-            email_text = req_data.get("email_text", "")
-            include_adv = req_data.get("include_adversarial", True)
-            if not email_text:
-                self.send_json({"error": "Missing email_text in request"}, 400)
+        try:
+            if path == "/api/analyze":
+                email_text = req_data.get("email_text", "")
+                include_adv = bool(req_data.get("include_adversarial", True))
+                if not email_text or not isinstance(email_text, str):
+                    self.send_json({"error": "Missing or invalid 'email_text' in request body"}, 400)
+                    return
+
+                result = self.dss.analyze_email(email_text, include_adversarial=include_adv)
+                self.send_json(result)
                 return
 
-            result = self.dss.analyze_email(email_text, include_adversarial=include_adv)
-            self.send_json(result)
-            return
-
-        elif path == "/api/adversarial":
-            features = req_data.get("features", {})
-            adv_engine = AdversarialSearchEngine()
-            result = adv_engine.run_adversarial_simulation(features)
-            self.send_json(result)
-            return
-
-        elif path == "/api/kaggle-eval":
-            samples_count = int(req_data.get("samples", 500))
-            loader = KaggleDatasetLoader()
-            if not loader.exists():
-                self.send_json({"error": "Kaggle dataset Phishing_Email.csv not found"}, 404)
+            elif path == "/api/adversarial":
+                features = req_data.get("features", {})
+                if not isinstance(features, dict):
+                    self.send_json({"error": "Expected dict for 'features'"}, 400)
+                    return
+                adv_engine = AdversarialSearchEngine()
+                result = adv_engine.run_adversarial_simulation(features)
+                self.send_json(result)
                 return
 
-            samples = loader.load_samples(max_samples=samples_count)
-            split = int(0.7 * len(samples))
-            train = samples[:split]
-            test = samples[split:]
+            elif path == "/api/kaggle-eval":
+                samples_count = int(req_data.get("samples", 500))
+                samples_count = max(50, min(samples_count, 5000))
+                loader = KaggleDatasetLoader()
+                if not loader.exists():
+                    self.send_json({"error": "Kaggle dataset Phishing_Email.csv not found on server"}, 404)
+                    return
 
-            clf = NaiveBayesClassifier()
-            clf.train(train)
+                samples = loader.load_samples(max_samples=samples_count)
+                split = int(0.7 * len(samples))
+                train = samples[:split]
+                test = samples[split:]
 
-            y_true = [s["label"] for s in test]
-            y_pred = [clf.predict(s["features"])["predicted_label"] for s in test]
-            metrics = ModelEvaluator.compute_metrics(y_true, y_pred)
+                clf = NaiveBayesClassifier()
+                clf.train(train)
 
-            self.send_json({
-                "samples_evaluated": len(samples),
-                "test_size": len(test),
-                "metrics": metrics
-            })
-            return
+                y_true = [s["label"] for s in test]
+                y_pred = [clf.predict(s["features"])["predicted_label"] for s in test]
+                metrics = ModelEvaluator.compute_metrics(y_true, y_pred)
 
-        elif path == "/api/batch-analyze":
-            csv_content = req_data.get("csv_content", "") or req_data.get("csv_text", "")
-            max_rows = int(req_data.get("max_rows", 1000))
-            if not csv_content:
-                self.send_json({"error": "No CSV content provided in request"}, 400)
+                self.send_json({
+                    "samples_evaluated": len(samples),
+                    "test_size": len(test),
+                    "metrics": metrics
+                })
                 return
 
-            analyzer = BatchCSVAnalyzer(dss=self.dss)
-            report = analyzer.analyze_csv_text(csv_content, max_rows=max_rows)
-            self.send_json(report)
-            return
+            elif path == "/api/batch-analyze":
+                csv_content = req_data.get("csv_content", "") or req_data.get("csv_text", "")
+                if not csv_content or not isinstance(csv_content, str):
+                    self.send_json({"error": "No valid CSV content provided in request"}, 400)
+                    return
 
-        self.send_json({"error": "Endpoint not found"}, 404)
+                raw_max = req_data.get("max_rows", 500)
+                try:
+                    max_rows = max(10, min(int(raw_max), 2000))
+                except (ValueError, TypeError):
+                    max_rows = 500
+
+                analyzer = BatchCSVAnalyzer(dss=self.dss)
+                report = analyzer.analyze_csv_text(csv_content, max_rows=max_rows)
+                self.send_json(report)
+                return
+
+            self.send_json({"error": "Endpoint not found"}, 404)
+
+        except Exception as exc:
+            self.send_json({"error": f"Internal server error: {str(exc)}"}, 500)
 
     def serve_static(self, path: str):
         if path in ["/", ""]:
@@ -242,6 +304,7 @@ class AppRequestHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header("Content-Type", mime_type)
                 self.send_header("Content-Length", str(len(content)))
+                self._set_security_headers()
                 self.end_headers()
                 self.wfile.write(content)
             except Exception as e:

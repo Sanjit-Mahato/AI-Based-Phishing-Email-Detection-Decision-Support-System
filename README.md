@@ -6,7 +6,7 @@ Developed for **Artificial Intelligence (CCSAI0301)** at **Noida Institute of En
 
 ---
 
-## 👥 Team Information (Team Aahvaan - Group 1, Section F)
+## 👥 Group Members (Group 98, Section F)
 - **Maneesh Ray** (0261DCS006) — *Team Lead & AI Solution Architect*: End-to-end pipeline architecture, dataflow orchestration, and integration.
 - **Chandan Kumar** (0261DCS003) — *Search Algorithm & Optimisation Analyst*: Informed heuristic scoring functions, weight calibration, and minimal evasion search.
 - **Devanshu** (0261DCS016) — *Heuristic & Decision Intelligence Specialist*: Multi-module decision blending logic and threshold reconciliation.
@@ -144,11 +144,18 @@ python3 cli.py
 ```bash
 python3 run_server.py
 ```
-Open **[http://localhost:8080](http://localhost:8080)** in your browser to access:
-- **Bulk Email CSV Threat Intelligence & Audit Scanner**: Upload any CSV email list (auto-detects sender, subject, body columns) to generate instant threat audits, 5 KPI executive metrics, indicator prevalence charts, filtered investigation tables, and downloadable CSV audit reports.
-- **Live Email Analyzer**: Real-time feature detection, risk index gauge, explainable deduction reasoning, and actionable security advisories.
-- **Adversarial Security Matrix**: Minimax game tree and evasive attacker tactics sensitivity matrix.
-- **Algorithmic Evaluation Studio**: Live verification tables comparing Heuristic, Expert System, Naive Bayes, and Combined DSS.
+Open **[http://localhost:8080](http://localhost:8080)** in your browser to access the **Enterprise Cyber-Defense Platform**:
+- **Sidebar App Shell**: Fast navigation between 5 dedicated workspaces with keyboard shortcuts (`1` to `5`).
+- **Workspace 1: Real-Time Incident Analyzer (Single Email Scanner)**: Sub-50ms live single email inspection, 3 preset attack scenarios, dynamic cyber verdict glow banner, dual risk & confidence meters, explainable deduction reasoning, actionable mitigation playbooks, and 7 core vector indicator cards with live evidence snippets.
+- **Workspace 2: Fleet Threat Intelligence & CSV Audit Scanner**: High-throughput drag-and-drop CSV batch scanning with automatic column mapping (`Email Text`, `Body`, `Sender`, `Subject`), 5 real-time executive KPI metrics, 7-vector prevalence telemetry bars, searchable and filtered investigation tables, clickable full-content email inspection modal, and CSV audit report export.
+- **Workspace 3: Adversarial & Proof Lab**: Unit 2 Minimax zero-sum game tree search with alpha-beta pruning, optimal attacker tactics, game payoff, and tactics sensitivity matrix + Unit 3 Expert System Horn clause backward-chaining proof trees and forward-chaining deduction traces.
+- **Workspace 4: Algorithmic Benchmark & Evaluation Studio**: Live verification matrix comparing Heuristic, Rules, Naive Bayes, and Combined DSS across 60 benchmark emails, 5-fold cross-validation scores, and large-scale Kaggle dataset streaming tests.
+- **Workspace 5: Rule Knowledge Base**: Interactive 13 Horn-clause catalog with antecedent premises, confidence factors ($CF$), and search/filter.
+
+**UI/UX & Engineering Highlights**
+- **Theme**: Enterprise Cyber Dark (CrowdStrike / Datadog aesthetic) with high-contrast night-shift ergonomics.
+- **Backend Hardening**: Zero-dependency Python standard library server with 15MB payload size protection, security headers (`nosniff`, `DENY`), health monitoring (`/api/health`), and in-memory benchmark caching.
+- **Responsive**: Fully responsive across ultra-wide monitors, desktops, laptops, and mobile screens with slide-out navigation drawer.
 
 ### 4. Run Automated Test Suite
 ```bash
@@ -177,9 +184,9 @@ python3 -m unittest discover -s tests -p "test_*.py"
 │   ├── dss/                          # Blended Decision Support System & Batch CSV Analyzer
 │   └── server.py                     # Built-in REST API & static web server
 ├── web/
-│   ├── index.html                    # Single-page SOCRadar enterprise blue/white dashboard
-│   ├── css/styles.css                # Enterprise SOCRadar design system & typography
-│   └── js/                           # Real-time scan controllers & CSV export engines
+│   ├── index.html                    # Enterprise Sidebar App Shell with 5 workspaces
+│   ├── css/styles.css                # Enterprise Cyber Dark design system (CrowdStrike/Datadog style)
+│   └── js/                           # Modular controllers (app, batch, live, adversarial, proof, benchmark, rules)
 ├── tests/                            # Unit and integration test suites
 ├── notebooks/
 │   └── run_experiments.py            # Feature prevalence & log-odds importance

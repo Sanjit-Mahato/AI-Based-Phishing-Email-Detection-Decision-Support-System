@@ -143,68 +143,69 @@ class DecisionSupportSystem:
         evidence: Dict[str, Any],
         backward_res: Dict[str, Any]
     ) -> List[Dict[str, str]]:
-        """Generates role-specific, explainable cybersecurity advisory steps."""
+        """Generates simple, clear, plain-language action steps."""
         recs = []
 
         if verdict == "Phishing":
             recs.append({
                 "level": "CRITICAL",
-                "action": "Quarantine / Delete Immediately",
-                "detail": "Do not interact with this email, click any hyperlinks, or reply to the sender."
+                "action": "Delete this email",
+                "detail": "Do not click any links or reply to the sender."
             })
             if features.get("executable_attachment"):
+                files = ", ".join(evidence.get("executable_attachment", []))
                 recs.append({
                     "level": "CRITICAL",
-                    "action": "Do Not Execute Attachments",
-                    "detail": f"Contains dangerous file payloads ({', '.join(evidence.get('executable_attachment', []))}). Sandbox inspection required."
+                    "action": "Do not open file",
+                    "detail": f"Attached file ({files}) may harm your device."
                 })
             if features.get("reply_to_mismatch"):
                 recs.append({
                     "level": "HIGH",
-                    "action": "Sender Identity Spoofing Detected",
-                    "detail": f"Sender domain does not match return path: {evidence.get('reply_to_mismatch', '')}."
+                    "action": "Fake sender address",
+                    "detail": f"Sender address does not match reply address: {evidence.get('reply_to_mismatch', '')}."
                 })
             if features.get("ip_in_url") or features.get("suspicious_tld"):
                 recs.append({
                     "level": "HIGH",
-                    "action": "Block Malicious Host & URLs",
-                    "detail": "Add observed IP address/suspicious domains to enterprise firewall and mail gateway blocklists."
+                    "action": "Block unsafe link",
+                    "detail": "The web link points to an unsafe or dangerous website."
                 })
             recs.append({
                 "level": "INFO",
-                "action": "Notify Security Operations Center (SOC)",
-                "detail": "Forward headers as an attachment to internal security team for threat intelligence logging."
+                "action": "Report email",
+                "detail": "Forward this email to your IT or security team."
             })
 
         elif verdict == "Suspicious":
             recs.append({
                 "level": "WARNING",
-                "action": "Treat With Caution",
-                "detail": "This email displays deceptive characteristics but has not yet met full malicious criteria."
+                "action": "Be careful",
+                "detail": "This email looks suspicious. Double-check before clicking."
             })
             if features.get("urgency_words"):
                 recs.append({
                     "level": "WARNING",
-                    "action": "Beware of Psychological Coercion",
-                    "detail": "Urgency words detected attempting to force hasty user action. Verify independently via official phone/portal."
+                    "action": "Watch for urgent pressure",
+                    "detail": "Email tries to rush you. Check directly with the sender."
                 })
             if features.get("no_https"):
                 recs.append({
                     "level": "WARNING",
-                    "action": "Unencrypted Destination Link",
-                    "detail": "Links use unencrypted HTTP protocol, exposing credentials to interception."
+                    "action": "Insecure web link",
+                    "detail": "Link has no security lock (no HTTPS). Do not enter passwords."
                 })
 
         else:
             recs.append({
                 "level": "SUCCESS",
-                "action": "Standard Verification",
-                "detail": "No anomalous phishing traits, spoofed headers, or malicious files were identified."
+                "action": "Email looks safe",
+                "detail": "No scam signs, fake links, or dangerous files were found."
             })
             recs.append({
                 "level": "INFO",
-                "action": "Maintain Hygiene",
-                "detail": "Always practice standard cybersecurity hygiene before inputting sensitive credentials."
+                "action": "Stay alert",
+                "detail": "Always check web addresses before typing passwords."
             })
 
         return recs

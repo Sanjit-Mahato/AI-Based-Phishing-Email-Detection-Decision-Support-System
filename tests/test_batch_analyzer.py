@@ -58,5 +58,35 @@ class TestBatchCSVAnalyzer(unittest.TestCase):
         self.assertIn("paypal-update.top", csv_report)
 
 
+    def test_tabular_phishing_dataset(self):
+        parent_dir = os.path.dirname(BASE_DIR)
+        tabular_path = os.path.join(parent_dir, "email_phishing_data.csv")
+        if not os.path.exists(tabular_path):
+            tabular_path = os.path.join(BASE_DIR, "email_phishing_data.csv")
+
+        self.assertTrue(os.path.exists(tabular_path), "email_phishing_data.csv must exist in workspace")
+
+        with open(tabular_path, "r", encoding="utf-8") as f:
+            csv_text = f.read(2 * 1024 * 1024)  # read top chunk with headers
+
+        result = self.analyzer.analyze_csv_text(csv_text, max_rows=50)
+        self.assertIn("summary", result)
+        self.assertIn("results", result)
+        summary = result["summary"]
+        self.assertGreater(summary["total_emails"], 0)
+        self.assertIn("phishing_count", summary)
+        self.assertIn("safe_count", summary)
+        self.assertIn("indicator_prevalence", summary)
+        self.assertEqual(len(summary["indicator_prevalence"]), 7)
+
+        # Check item telemetry
+        item0 = result["results"][0]
+        self.assertTrue(len(item0["sender"]) > 0)
+        self.assertTrue(len(item0["subject"]) > 0)
+        self.assertTrue(len(item0["snippet"]) > 0)
+        self.assertIn("[Data Metrics]", item0["snippet"])
+        self.assertIn("DATASET EMAIL FEATURE TELEMETRY", item0["raw_content"])
+
+
 if __name__ == "__main__":
     unittest.main()

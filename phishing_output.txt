@@ -10,8 +10,8 @@ Naive Bayes (>= 0.5)       | 0.883    | 0.800     | 1.000  | 7       | 0
 Combined (flagged)         | 0.883    | 0.800     | 1.000  | 7       | 0      
 --------------------------------------------------------------------------------
 
-Naive Bayes 5-fold cross-validation accuracy: 0.925, 0.950, 0.950, 1.000, 0.975 (mean 0.960)
+Naive Bayes 5-fold cross-validation accuracy: 0.800, 0.950, 0.875, 0.975, 0.975 (mean 0.915)
 
-Backward Chaining Proof: phishing by spoofed sender (spoofed_sender by reply to mismatch) and bad link (bad_link by ip in url)
+Backward Chaining Proof: phishing risk: fake sender address and unsafe numeric web link
 
 Adversarial Minimax: Nodes=7, Pruned=4, Optimal=HTTPS Certificate Masquerade

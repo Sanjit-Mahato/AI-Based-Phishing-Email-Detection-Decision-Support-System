@@ -3,7 +3,7 @@
 AI-Based Phishing Email Detection & Decision Support System
 Primary Project Pipeline & Month 2 Review Benchmark Runner
 
-Authors / Team Aahvaan (Group 1 - CCSAI0301 - NIET):
+Authors / Group Members (Group 98 - CCSAI0301 - NIET):
   - Maneesh Ray (Team Lead & AI Solution Architect)
   - Chandan Kumar (Search Algorithm & Optimisation Analyst)
   - Devanshu (Heuristic & Decision Intelligence Specialist)

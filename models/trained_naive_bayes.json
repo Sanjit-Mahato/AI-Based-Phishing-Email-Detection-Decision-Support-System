@@ -23,7 +23,7 @@
     "1": {
       "reply_to_mismatch": 0.6621621621621622,
       "ip_in_url": 0.25675675675675674,
-      "suspicious_tld": 0.25675675675675674,
+      "suspicious_tld": 0.7432432432432432,
       "urgency_words": 0.9864864864864865,
       "executable_attachment": 0.17567567567567569,
       "no_https": 0.9864864864864865,

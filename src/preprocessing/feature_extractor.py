@@ -37,7 +37,7 @@ class FeatureExtractor:
 
     EXECUTABLE_EXTENSIONS = {
         '.exe', '.scr', '.bat', '.vbs', '.js', '.cmd', '.iso', '.hta',
-        '.wsf', '.pif', '.dll', '.jar', '.com', '.msi', '.ps1'
+        '.wsf', '.pif', '.dll', '.jar', '.msi', '.ps1'
     }
 
     IP_URL_REGEX = re.compile(
